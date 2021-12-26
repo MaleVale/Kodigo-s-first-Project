@@ -1,29 +1,38 @@
 package com.kodigo.project;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Main {
     // objects and instances
     public static final Clients clients = new Clients();
     public static final Scanner scan = new Scanner(System.in);
 
-    public static void main(String[] args){
-        // welcome message
+
+    public static void main(String[] args) throws IOException {
+        /*welcome message
         System.out.println("--------------------- WELCOME TO THE KODIGO'S STORE ---------------------");
         // makes a request for typing name
         enterName();
         // makes a request for typing email
-        enterEmail();
-
-        System.out.println(clients.getName() + " " + clients.getEmail());
+        enterEmail();*/
+        // shows the list of the available products
+        showProducts();
 
     }
 
-    public static void enterName(){
+    public static void enterName() {
         // starts requesting for the data of the client
         System.out.print("Enter your name: ");
         // validates that the typed name is a string, if not, gives three attempts to fix it
-        if (!clients.setName(scan.nextLine())){
+        if (!clients.setName(scan.nextLine())) {
             // shows a message
             System.out.println("You have entered an invalid name. You have 3 attempts to type a valid name. \n");
             // boolean variable to check if the user typed a correct name after the for loop ends
@@ -56,12 +65,12 @@ public class Main {
         }
     }
 
-    public static void enterEmail(){
+    public static void enterEmail() {
         // requests for the client's email
         System.out.print("Enter your email: ");
 
         // validates that the typed email is valid, if not, gives three attempts to fix it
-        if (!clients.setEmail(scan.nextLine())){
+        if (!clients.setEmail(scan.nextLine())) {
             // shows a message
             System.out.println("You have entered an invalid email. You have 3 attempts to type a valid email. \n");
             // boolean variable to check if the user typed a correct email after the for loop ends
@@ -93,4 +102,11 @@ public class Main {
             }
         }
     }
+
+    public static void showProducts() throws IOException {
+
+    }
+
+
 }
+
