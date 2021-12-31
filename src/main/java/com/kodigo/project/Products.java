@@ -3,13 +3,15 @@ package com.kodigo.project;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @Getter
 public class Products {
     private int id;
     private String brand;
     private String name;
-    private double price;
+    private BigDecimal price;
     private int stock;
 
     public String toString(){
