@@ -9,7 +9,7 @@ public class Main {
     public static final Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        /* welcome message
+        /* welcome Message
         System.out.println("--------------------- WELCOME TO THE KODIGO'S STORE ---------------------");
         // makes a request for typing name
         enterName();
