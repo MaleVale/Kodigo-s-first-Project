@@ -2,7 +2,6 @@ package com.kodigo.project;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
 import java.math.BigDecimal;
 
 @AllArgsConstructor
@@ -15,6 +14,6 @@ public class Products {
     private int stock;
 
     public String toString(){
-        return id + ". Name: " + name + ", Brand: " + brand + ", Price: $" + price + ", Available: " + stock;
+        return String.format("%d. Shoes: %s | Available: %d | Price: $%.2f", id, name, stock, price);
     }
 }

@@ -9,14 +9,14 @@ public class Main {
     public static final Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        // welcome message
+        /* welcome message
         System.out.println("--------------------- WELCOME TO THE KODIGO'S STORE ---------------------");
         // makes a request for typing name
         enterName();
         // makes a request for typing email
         enterEmail();
         // makes a request for typing address
-        enterAddress();
+        enterAddress();*/
         // starts the loop for the shopping until the client decides to stop it
         startShopping();
 
