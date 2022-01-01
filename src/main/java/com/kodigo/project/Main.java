@@ -1,6 +1,5 @@
 package com.kodigo.project;
 
-import org.apache.commons.lang3.math.NumberUtils;
 import java.util.Scanner;
 
 public class Main {
@@ -10,14 +9,14 @@ public class Main {
     public static final Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        // welcome message
+        /* welcome Message
         System.out.println("--------------------- WELCOME TO THE KODIGO'S STORE ---------------------");
         // makes a request for typing name
         enterName();
         // makes a request for typing email
         enterEmail();
         // makes a request for typing address
-        enterAddress();
+        enterAddress();*/
         // starts the loop for the shopping until the client decides to stop it
         startShopping();
 
@@ -148,13 +147,11 @@ public class Main {
             System.out.println("3. Check products of the cart");
             System.out.println("4. See available products");
             System.out.println("5. End shopping");
-            System.out.println("6. Cancel and exit");
             // message
             System.out.print("\nSelect an option: ");
             // switch for multiple cases
             switch (scan.nextLine()){
                 case "1":
-                    addToCart();
                     break;
                 case "2":
                     break;
@@ -162,13 +159,9 @@ public class Main {
                     break;
                 case "4":
                     // shows the list of the available products
-                    Inventory.showInventory();
+                    inventory.showInventory();
                     break;
                 case "5":
-
-                    break;
-                case "6":
-                    System.out.println("\nClosing the program...");
                     stayOnMenu = false;
                     break;
                 default:
@@ -178,46 +171,6 @@ public class Main {
             }
         }
 
-    }
-
-    public static void addToCart(){
-        // shows the list of the available products
-        Inventory.showInventory();
-        // message
-        System.out.println("\n------- TYPE THE ID OF THE PRODUCT THAT YOU WANT TO ADD, " +
-                "TYPE 0 TO STOP ADDING PRODUCTS -------");
-        // variable for cart loop
-        boolean stayOnCart = true;
-        // loop
-        while (stayOnCart){
-            // message
-            System.out.print("Type the ID of the product: ");
-            // captures the id as a string
-            String idProduct = scan.next();
-            // validates if the given value is parsable to int
-            if (NumberUtils.isParsable(idProduct)){
-                // parses the string to int
-                int id = Integer.parseInt(idProduct);
-                // validates if the given value is 0 or is on the array
-                if (id == 0){
-                    // exits from the loop
-                    System.out.println("\nGoing back to menu...");
-                    stayOnCart = false;
-                } else {
-                    // checks if the given value is not bigger than the array.length
-                    if (id > inventory.returnInventoryLength()){
-                        // message
-                        System.out.println("\nSorry! It looks that the number that you type doesn't " +
-                                "corresponds to an existing product\n");
-                    } else {
-                        // here will ask for how much do you wanna add and that stuff, I gotta go :v
-                    }
-                }
-            } else {
-                // invalid character
-                System.out.println("\nSorry! It looks that you didn't type a number.");
-            }
-        }
     }
 
 
