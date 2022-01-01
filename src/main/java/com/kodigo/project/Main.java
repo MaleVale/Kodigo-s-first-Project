@@ -1,11 +1,16 @@
 package com.kodigo.project;
 
+import com.kodigo.repository.CustomerManagement;
+import com.kodigo.repository.ProductRepository;
+
 import java.util.Scanner;
 
 public class Main {
     // objects and instances
-    public static final Clients clients = new Clients();
-    public static final Inventory inventory = new Inventory();
+    //public static final Clients clients = new Clients();
+    public static CustomerManagement customerManagement = new CustomerManagement();
+    //public static final Inventory inventory = new Inventory();
+    public static ProductRepository productRepository = new ProductRepository();
     public static final Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -26,7 +31,8 @@ public class Main {
         // starts requesting for the data of the client
         System.out.print("Enter your name: ");
         // validates that the typed name is a string and has a valid length, if not, gives three attempts to fix it
-        if (!clients.setName(scan.nextLine())) {
+        //if (!clients.setName(scan.nextLine())) {
+        if(!customerManagement.getCustomer().setName(scan.nextLine())){
             // shows a message
             System.out.println("You have entered an invalid name. You have 3 attempts to type a valid name. \n");
             // boolean variable to check if the user typed a correct name after the for loop ends
@@ -39,7 +45,8 @@ public class Main {
                 System.out.print("Enter your name: ");
                 /* if the return of the method setName() is true, breaks the for loop and sets
                  the boolean variable to true */
-                if (clients.setName(scan.nextLine())) {
+                //if (clients.setName(scan.nextLine())) {
+                if(customerManagement.getCustomer().setName(scan.nextLine())){
                     valid = true;
                     break;
                 }
@@ -64,7 +71,8 @@ public class Main {
         System.out.print("Enter your email: ");
 
         // validates that the typed email is valid, if not, gives three attempts to fix it
-        if (!clients.setEmail(scan.nextLine())) {
+        //if (!clients.setEmail(scan.nextLine())) {
+        if(!customerManagement.getCustomer().setEmail(scan.nextLine())){
             // shows a message
             System.out.println("You have entered an invalid email. You have 3 attempts to type a valid email. \n");
             // boolean variable to check if the user typed a correct email after the for loop ends
@@ -77,7 +85,8 @@ public class Main {
                 System.out.print("Enter your email: ");
                 /* if the return of the method setName() is true, breaks the for loop and sets
                  the boolean variable to true */
-                if (clients.setEmail(scan.nextLine())) {
+                //if (clients.setEmail(scan.nextLine())) {
+                if(customerManagement.getCustomer().setEmail(scan.nextLine())){
                     valid = true;
                     break;
                 }
@@ -101,7 +110,8 @@ public class Main {
         // starts requesting for the data of the client
         System.out.print("Enter your address: ");
         // validates that the typed address is a string and has a valid length, if not, gives three attempts to fix it
-        if (!clients.setName(scan.nextLine())) {
+        //if (!clients.setName(scan.nextLine())) {
+        if(!customerManagement.getCustomer().setAddress(scan.nextLine())){
             // shows a message
             System.out.println("You have entered an invalid address. You have 3 attempts to type a valid address. \n");
             // boolean variable to check if the user typed a correct address after the for loop ends
@@ -114,7 +124,8 @@ public class Main {
                 System.out.print("Enter your address: ");
                 /* if the return of the method setAddress() is true, breaks the for loop and sets
                  the boolean variable to true */
-                if (clients.setAddress(scan.nextLine())) {
+                //if (clients.setAddress(scan.nextLine())) {
+                if(customerManagement.getCustomer().setAddress(scan.nextLine())){
                     valid = true;
                     break;
                 }
@@ -159,7 +170,8 @@ public class Main {
                     break;
                 case "4":
                     // shows the list of the available products
-                    inventory.showInventory();
+                    //inventory.showInventory();
+                    productRepository.showProductRepository();
                     break;
                 case "5":
                     stayOnMenu = false;

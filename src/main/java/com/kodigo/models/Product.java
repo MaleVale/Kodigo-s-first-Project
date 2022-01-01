@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
-@AllArgsConstructor
 @Data
 public class Product extends Tax{
 
@@ -16,8 +15,13 @@ public class Product extends Tax{
     private BigDecimal price;
     private int stock;
 
-    public Product(){
-        super.initialize();
+    public Product(int id, String brand, String name, BigDecimal price, int stock){
+        this.id = id;
+        this.brand = brand;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        initializeTax(price);
     }
 
     public String toString(){
