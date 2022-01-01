@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class ProductRepository {
     @Getter
-    private ArrayList<Product> products;
+    private ArrayList<Product> products = new ArrayList<>();
 
     public ProductRepository() {
         this.initialize();

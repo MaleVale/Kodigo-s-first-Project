@@ -1,11 +1,11 @@
-package com.kodigo.project;
+package com.kodigo.validations;
 
 import org.apache.commons.validator.routines.EmailValidator;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validator {
-
+public class StringValidation {
     public boolean validateAlphabetic(String value, int max){
         // checks if the string has the max characters allowed
         if (value.length() <= max) {
@@ -19,7 +19,6 @@ public class Validator {
             return false;
         }
     }
-
     public boolean validateAlphanumeric(String value, int max){
         // checks if the value has the max length allowed
         if (value.length() <= max) {
@@ -33,7 +32,6 @@ public class Validator {
             return false;
         }
     }
-
     public boolean validateEmail(String email){
         // create the EmailValidator instance
         EmailValidator validator = EmailValidator.getInstance();

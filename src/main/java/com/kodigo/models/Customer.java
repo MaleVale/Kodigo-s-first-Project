@@ -1,6 +1,6 @@
 package com.kodigo.models;
 
-import com.kodigo.project.Validator;
+import com.kodigo.validations.StringValidation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 @AllArgsConstructor
 @Getter
-public class Customer extends Validator {
+public class Customer extends StringValidation {
     private int id;
     private String name;
     private String lastName;

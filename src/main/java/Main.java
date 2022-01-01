@@ -1,5 +1,3 @@
-package com.kodigo.project;
-
 import com.kodigo.repository.CustomerManagement;
 import com.kodigo.repository.ProductRepository;
 
