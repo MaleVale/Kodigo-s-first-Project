@@ -30,13 +30,9 @@ public class ProductRepository {
         System.out.println("\nWelcome! These are our available products\n");
 
         // prints the array
-        for (Product p : products) {
-            System.out.println(products.toString());
+        for (Product product : products) {
+            System.out.println(product.toString());
         }
-    }
-
-    public boolean isProductAvailable(Product product) {
-        return false;
     }
 
     public int returnInventoryLength(){
@@ -44,9 +40,4 @@ public class ProductRepository {
         return products.size();
     }
 
-    /*
-    public void addToCart(int i){
-        cart.add(inventoryList.get(i));
-    }
-    */
 }

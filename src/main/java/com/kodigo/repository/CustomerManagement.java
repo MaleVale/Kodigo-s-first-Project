@@ -10,8 +10,12 @@ public class CustomerManagement {
     private Customer customer;
 
     public CustomerManagement(){
+        this.customer = new Customer();
         this.initialize();
     }
-    private void initialize(){}
+
+    private void initialize(){
+
+    }
 }
 

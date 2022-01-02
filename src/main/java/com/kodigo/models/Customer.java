@@ -3,11 +3,12 @@ package com.kodigo.models;
 import com.kodigo.validations.StringValidation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
 
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class Customer extends StringValidation {
     private int id;
