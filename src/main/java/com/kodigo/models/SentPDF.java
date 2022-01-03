@@ -14,7 +14,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class App {
+public class SentPDF {
     public static void main(String[] args) throws MessagingException {
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
