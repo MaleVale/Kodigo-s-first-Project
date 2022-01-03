@@ -12,7 +12,7 @@ public abstract class Tax {
     }
 
     private void setPercentageTax(){
-        this.percentageTax = BigDecimal.valueOf(13);
+        this.percentageTax = BigDecimal.valueOf(0.13);
     }
 
     private void setTax(BigDecimal price){

@@ -17,7 +17,7 @@ public class Customer extends StringValidation {
     private String email;
     private String address;
     @Setter
-    private ArrayList<Purchase> purchases;
+    private ArrayList<Purchase> purchases = new ArrayList<>();
 
     // validates that the typed name is a string and has a valid length
     public boolean setName(String name) {

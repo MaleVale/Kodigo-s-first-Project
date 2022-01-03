@@ -2,8 +2,11 @@ import com.kodigo.models.Product;
 import com.kodigo.models.Purchase;
 import com.kodigo.repository.CustomerManagement;
 import com.kodigo.repository.ProductRepository;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.apache.commons.lang3.math.NumberUtils;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -17,6 +20,7 @@ public class Main {
     public static void main(String[] args) {
         // welcome Message
         System.out.println("--------------------- WELCOME TO THE KODIGO'S STORE ---------------------");
+
         // makes a request for typing name
         enterName();
         // makes a request for typing email
@@ -168,7 +172,7 @@ public class Main {
                 case "4" -> productRepository.showProductRepository();
                 // ends the shopping
                 case "5" -> {
-                    stayOnMenu = false;
+                    //stayOnMenu = false;
                     endShopping();
                 }
                 // closes the program
@@ -234,6 +238,10 @@ public class Main {
                                     System.out.println("\nSorry! You can't add 0 to cart.");
                                 } else {
                                     // adds the product to the arraylist
+                                    productRepository
+                                            .getProducts()
+                                            .get(id)
+                                            .setStock(productRepository.getProducts().get(id).getStock()-Integer.parseInt(stock));
                                     cart.add(
                                             new Product(
                                                     productRepository.getProducts().get(id).getId(),
@@ -292,9 +300,18 @@ public class Main {
                             System.out.println("\nSorry! Looks like the typed ID doesn't coincides with a product.");
                         } else {
                             // saves the id as an integer and subtracts one to coincide it with an arraylist position
-                            int id = Integer.parseInt(idProduct) - 1;
+                            int id = Integer.parseInt(idProduct)-1;
+
+                            //Getting product to update the inventory
+                            Product pToDelete = cart.get(id);
+                            Product pFromRepo = productRepository.getProducts().stream()
+                                    .filter(product -> pToDelete.getName().equals(product.getName()))
+                                    .findAny()
+                                    .orElse(null);
+                            pFromRepo.setStock(pToDelete.getStock()+pFromRepo.getStock());
                             // removes the product from the arraylist
                             cart.remove(id);
+
                             // message
                             System.out.println("\nProduct removed from the cart successfully!");
                             // shows the cart again
@@ -337,10 +354,16 @@ public class Main {
     }
 
     public static void endShopping(){
-        customerManagement.getCustomer().getPurchases().add(new Purchase(12, java.time.LocalDate.now(), this.ca));
+        if(!(cart.size() == 0)){
+            //If there is products in var 'cart' we can add it to the purchase
+            Purchase p = new Purchase(customerManagement.getCustomer(), (new Date()), (new ArrayList<>(cart)));
+            //Adding purchase to de current customer
+            customerManagement.getCustomer().getPurchases().add(p);
+            //clear var 'cart' when the purchase are completed
+            cart.clear();
+            System.out.println("Purchase added successfully");
+        }else {
+            System.out.println("There is no products to create a purchase");
+        }
     }
-
-
-
 }
-
