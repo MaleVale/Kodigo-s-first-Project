@@ -5,6 +5,13 @@ import com.kodigo.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -36,7 +43,7 @@ public class Main {
         // starts requesting for the data of the client
         System.out.print("Enter your name: ");
         // validates that the typed name is a string and has a valid length, if not, gives three attempts to fix it
-        if(!customerManagement.getCustomer().setName(scan.nextLine())){
+        if (!customerManagement.getCustomer().setName(scan.nextLine())) {
             // shows a message
             System.out.println("You have entered an invalid name. You have 3 attempts to type a valid name. \n");
             // boolean variable to check if the user typed a correct name after the for loop ends
@@ -49,7 +56,7 @@ public class Main {
                 System.out.print("Enter your name: ");
                 /* if the return of the method setName() is true, breaks the for loop and sets
                  the boolean variable to true */
-                if(customerManagement.getCustomer().setName(scan.nextLine())){
+                if (customerManagement.getCustomer().setName(scan.nextLine())) {
                     valid = true;
                     break;
                 }
@@ -74,7 +81,7 @@ public class Main {
         System.out.print("Enter your email: ");
 
         // validates that the typed email is valid, if not, gives three attempts to fix it
-        if(!customerManagement.getCustomer().setEmail(scan.nextLine())){
+        if (!customerManagement.getCustomer().setEmail(scan.nextLine())) {
             // shows a message
             System.out.println("You have entered an invalid email. You have 3 attempts to type a valid email. \n");
             // boolean variable to check if the user typed a correct email after the for loop ends
@@ -87,7 +94,7 @@ public class Main {
                 System.out.print("Enter your email: ");
                 /* if the return of the method setName() is true, breaks the for loop and sets
                  the boolean variable to true */
-                if(customerManagement.getCustomer().setEmail(scan.nextLine())){
+                if (customerManagement.getCustomer().setEmail(scan.nextLine())) {
                     valid = true;
                     break;
                 }
@@ -111,7 +118,7 @@ public class Main {
         // starts requesting for the data of the client
         System.out.print("Enter your address: ");
         // validates that the typed address is a string and has a valid length, if not, gives three attempts to fix it
-        if(!customerManagement.getCustomer().setAddress(scan.nextLine())){
+        if (!customerManagement.getCustomer().setAddress(scan.nextLine())) {
             // shows a message
             System.out.println("You have entered an invalid address. You have 3 attempts to type a valid address. \n");
             // boolean variable to check if the user typed a correct address after the for loop ends
@@ -124,7 +131,7 @@ public class Main {
                 System.out.print("Enter your address: ");
                 /* if the return of the method setAddress() is true, breaks the for loop and sets
                  the boolean variable to true */
-                if(customerManagement.getCustomer().setAddress(scan.nextLine())){
+                if (customerManagement.getCustomer().setAddress(scan.nextLine())) {
                     valid = true;
                     break;
                 }
@@ -144,11 +151,11 @@ public class Main {
         }
     }
 
-    public static void startShopping(){
+    public static void startShopping() {
         // variable for the loop
         boolean stayOnMenu = true;
         // starts the loop of the menu
-        while(stayOnMenu){
+        while (stayOnMenu) {
             // message
             System.out.println("\n--------------------- What do you want to do? ---------------------");
             // available options of the menu
@@ -184,7 +191,7 @@ public class Main {
 
     }
 
-    public static void addToCart(){
+    public static void addToCart() {
         // shows the list of the available products
         productRepository.showProductRepository();
         // message
@@ -194,29 +201,29 @@ public class Main {
         // variable for the loop
         boolean stayOnCart = true;
         // loop
-        while (stayOnCart){
+        while (stayOnCart) {
             // message
             System.out.print("\nType the ID of the product that you want to add: ");
             // captures the typed value as string
             String idProduct = scan.next();
             // checks if the typed value is parsable to integer
-            if (NumberUtils.isParsable(idProduct)){
+            if (NumberUtils.isParsable(idProduct)) {
                 // checks if the typed value is 0, or if it is available at the inventory.
-                if (Integer.parseInt(idProduct) == 0){
+                if (Integer.parseInt(idProduct) == 0) {
                     // closes the loop
                     stayOnCart = false;
                     // message
                     System.out.println("\nGoing back to main menu...");
                 } else {
                     // checks that the typed number coincides with a position from the arraylist
-                    if (Integer.parseInt(idProduct) > productRepository.returnInventoryLength()){
+                    if (Integer.parseInt(idProduct) > productRepository.returnInventoryLength()) {
                         // message
                         System.out.println("\nSorry! Looks like the typed ID doesn't coincides with a product.");
                     } else {
                         // saves the id as an integer and subtracts one to coincide it with an arraylist position
                         int id = Integer.parseInt(idProduct) - 1;
                         // checks if the typed id is on the cart
-                        if (checkIfIsOnCart(productRepository.getProducts().get(id).getId())){
+                        if (checkIfIsOnCart(productRepository.getProducts().get(id).getId())) {
                             System.out.println("Sorry! Looks like the typed ID is already on the cart.\n" +
                                     "If you want to edit the stock, go back to main menu and remove it from the cart," +
                                     " then come back and add it again with the new stock.");
@@ -228,12 +235,12 @@ public class Main {
                             // saves the typed value
                             String stock = scan.next();
                             // checks if the typed value is parsable to integer
-                            if (NumberUtils.isParsable(stock)){
+                            if (NumberUtils.isParsable(stock)) {
                                 // checks if the typed value doesn't surpass the max available
-                                if (Integer.parseInt(stock) > productRepository.getProducts().get(id).getStock()){
+                                if (Integer.parseInt(stock) > productRepository.getProducts().get(id).getStock()) {
                                     // message
                                     System.out.println("\nSorry! Looks like stock is not enough.");
-                                } else if (Integer.parseInt(stock) == 0){
+                                } else if (Integer.parseInt(stock) == 0) {
                                     // message
                                     System.out.println("\nSorry! You can't add 0 to cart.");
                                 } else {
@@ -241,7 +248,7 @@ public class Main {
                                     productRepository
                                             .getProducts()
                                             .get(id)
-                                            .setStock(productRepository.getProducts().get(id).getStock()-Integer.parseInt(stock));
+                                            .setStock(productRepository.getProducts().get(id).getStock() - Integer.parseInt(stock));
                                     cart.add(
                                             new Product(
                                                     productRepository.getProducts().get(id).getId(),
@@ -267,7 +274,7 @@ public class Main {
 
     }
 
-    public static void deleteFromCart(){
+    public static void deleteFromCart() {
         // shows the products added to the cart
         checkCart();
         // message
@@ -277,7 +284,7 @@ public class Main {
         // variable for the loop
         boolean stayOnCart = true;
         // loop
-        while (stayOnCart){
+        while (stayOnCart) {
             if (cart.isEmpty()) {
                 stayOnCart = false;
             } else {
@@ -286,9 +293,9 @@ public class Main {
                 // captures the typed value as string
                 String idProduct = scan.next();
                 // checks if the typed value is parsable to integer
-                if (NumberUtils.isParsable(idProduct)){
+                if (NumberUtils.isParsable(idProduct)) {
                     // checks if the typed value is 0, or if it is available at the inventory.
-                    if (Integer.parseInt(idProduct) == 0){
+                    if (Integer.parseInt(idProduct) == 0) {
                         // closes the loop
                         stayOnCart = false;
                         // message
@@ -300,7 +307,7 @@ public class Main {
                             System.out.println("\nSorry! Looks like the typed ID doesn't coincides with a product.");
                         } else {
                             // saves the id as an integer and subtracts one to coincide it with an arraylist position
-                            int id = Integer.parseInt(idProduct)-1;
+                            int id = Integer.parseInt(idProduct) - 1;
 
                             //Getting product to update the inventory
                             Product pToDelete = cart.get(id);
@@ -308,7 +315,7 @@ public class Main {
                                     .filter(product -> pToDelete.getName().equals(product.getName()))
                                     .findAny()
                                     .orElse(null);
-                            pFromRepo.setStock(pToDelete.getStock()+pFromRepo.getStock());
+                            pFromRepo.setStock(pToDelete.getStock() + pFromRepo.getStock());
                             // removes the product from the arraylist
                             cart.remove(id);
 
@@ -326,11 +333,11 @@ public class Main {
         }
     }
 
-    public static boolean checkIfIsOnCart(int id){
+    public static boolean checkIfIsOnCart(int id) {
         // variable for return
         boolean isOnCart = false;
         // checks if the given id corresponds to an existing product on the cart
-        for (Product product : cart){
+        for (Product product : cart) {
             /* if the product is on the cart, the return will be true, if the product is not in the cart, the return
                will be false, this means that can be added to the cart */
             isOnCart = product.getId() == id;
@@ -338,7 +345,7 @@ public class Main {
         return isOnCart;
     }
 
-    public static void checkCart(){
+    public static void checkCart() {
         if (cart.isEmpty()) {
             // message
             System.out.println("\nThe cart is empty!");
@@ -353,8 +360,8 @@ public class Main {
         }
     }
 
-    public static void endShopping(){
-        if(!(cart.size() == 0)){
+    public static void endShopping() {
+        if (!(cart.size() == 0)) {
             //If there is products in var 'cart' we can add it to the purchase
             Purchase p = new Purchase(customerManagement.getCustomer(), (new Date()), (new ArrayList<>(cart)));
             //Adding purchase to de current customer
@@ -362,8 +369,60 @@ public class Main {
             //clear var 'cart' when the purchase are completed
             cart.clear();
             System.out.println("Purchase added successfully");
-        }else {
+        } else {
             System.out.println("There is no products to create a purchase");
+        }
+    }
+
+    public static void printPDF() {
+
+        try (PDDocument doc = new PDDocument()) {
+
+            PDPage myPage = new PDPage();
+            doc.addPage(myPage);
+
+            try (PDPageContentStream cont = new PDPageContentStream(doc, myPage)) {
+                //Page configuration
+                cont.beginText();
+                cont.setFont(new PDType1Font(Standard14Fonts.FontName.TIMES_BOLD_ITALIC), 12);
+                cont.setLeading(20.5f);
+                cont.newLineAtOffset(50, 500);
+
+                //The following lines writes on the PDF file
+                String title = "<                                                 -¡THANK YOU FOR YOUR PURCHASE!-                                             >";
+                cont.showText(title);
+
+                cont.newLine();
+                String line = "                                               Down below are your selected items and the total                       ";
+                cont.showText(line);
+
+                cont.newLine();
+                String Date = "Date:";
+                cont.showText(Date);
+
+                cont.newLine();
+                String products = "Products:";
+                cont.showText(products);
+
+                cont.newLine();
+                String subTotal = "Subtotal";
+                cont.showText(subTotal);
+
+                cont.newLine();
+                String Tax = "Taxes";
+                cont.showText(Tax);
+
+                cont.newLine();
+                String Total = "Total";
+                cont.showText(Total);
+
+                cont.endText();
+            }
+
+            doc.save("src/main/resources/bill.pdf");
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
