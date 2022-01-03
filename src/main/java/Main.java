@@ -374,12 +374,12 @@ public class Main {
         }
     }
 
-    public static void printPDF() {
+    public static void printPDF() throws IOException {
 
-        try (PDDocument doc = new PDDocument()) {
+            try (PDDocument doc = new PDDocument()) {
 
-            PDPage myPage = new PDPage();
-            doc.addPage(myPage);
+                PDPage myPage = new PDPage();
+                doc.addPage(myPage);
 
             try (PDPageContentStream cont = new PDPageContentStream(doc, myPage)) {
                 //Page configuration
@@ -397,32 +397,35 @@ public class Main {
                 cont.showText(line);
 
                 cont.newLine();
-                String Date = "Date:";
-                cont.showText(Date);
+                int ID = 50;
+                cont.showText(String.valueOf(ID));
+
+                cont.newLine();
+                int Date = 50; //ejemplo no más
+                cont.showText(String.valueOf(Date));
 
                 cont.newLine();
                 String products = "Products:";
                 cont.showText(products);
 
                 cont.newLine();
-                String subTotal = "Subtotal";
-                cont.showText(subTotal);
+                int subTotal = 1500;
+                cont.showText(String.valueOf(subTotal));
 
                 cont.newLine();
-                String Tax = "Taxes";
-                cont.showText(Tax);
+                int Tax = 50;
+                cont.showText("%"+Tax);
 
                 cont.newLine();
-                String Total = "Total";
-                cont.showText(Total);
+                int Total = 700;
+                cont.showText(String.valueOf(Total));
 
                 cont.endText();
             }
 
             doc.save("src/main/resources/bill.pdf");
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
         }
     }
-}
+
