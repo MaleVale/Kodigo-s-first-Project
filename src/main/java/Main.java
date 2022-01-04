@@ -16,10 +16,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Properties;
-import java.util.Scanner;
+import java.math.BigDecimal;
+import java.util.*;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -193,13 +191,14 @@ public class  Main {
                 case "5" -> {
                     //stayOnMenu = false;
                     endShopping();
+                    printPDF();
                 }
                 // closes the program
                 case "6" -> stayOnMenu = false;
                 // default option
                 default -> System.out.println("You have entered an invalid option.");
                 //prints and sents de bill via email.
-                case "7" ->printPDF();
+
             }
         }
 
@@ -411,19 +410,15 @@ public class  Main {
                 cont.showText(line);
 
                 cont.newLine();
-                int ID = 50;
-                cont.showText(String.valueOf(ID));
+                String date = "Date: 1-4-2022";
+                cont.showText(date);
 
                 cont.newLine();
-                int Date = 50; //ejemplo no más
-                cont.showText(String.valueOf(Date));
-
-                cont.newLine();
-                String products = "Products:";
+                String products = Arrays.toString(new ArrayList[]{cart});
                 cont.showText(products);
 
                 cont.newLine();
-                int subTotal = 1500;
+                BigDecimal subTotal = customerManagement.getCustomer().getPurchases().get(0).getSubTotal();
                 cont.showText(String.valueOf(subTotal));
 
                 cont.newLine();
@@ -441,7 +436,7 @@ public class  Main {
 
         }
         }
-    public class SentPDF {
+    public static class SentPDF {
         public static void main(String[] args) throws MessagingException {
             // Assuming you are sending email from through gmails smtp
             String host = "smtp.gmail.com";
@@ -459,10 +454,10 @@ public class  Main {
             properties.put("mail.smtp.auth", "true");
 
             // Recipient's email ID needs to be mentioned.
-            String to = "riv.edu10@gmail.com";
+            String to = "malenavalentina0703@gmail.com";
 
             // Sender's email ID needs to be mentioned
-            String from = "citigersystem@gmail.com";
+            String from = "proyectokodigo123@gmail.com";
 
             // Get the Session object.// and pass
             Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
@@ -470,37 +465,28 @@ public class  Main {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
 
-                    return new PasswordAuthentication("citigersystem@gmail.com", "citiger123");
-
+                    return new PasswordAuthentication("proyectokodigo123@gmail.com", "callefalsa123");
                 }
-
             });
             //session.setDebug(true);
             try {
                 // Create a default MimeMessage object.
                 MimeMessage message = new MimeMessage(session);
-
                 // Set From: header field of the header.
                 message.setFrom(new InternetAddress(from));
-
                 // Set To: header field of the header.
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
                 // Set Subject: header field
-                message.setSubject("This is the Subject Line!");
-
+                message.setSubject("Your bill is here!");
                 Multipart multipart = new MimeMultipart();
-
                 MimeBodyPart attachmentPart = new MimeBodyPart();
-
                 MimeBodyPart textPart = new MimeBodyPart();
-
                 try {
 
-                    File f = new File(absolutePath + "/src/main/java/com/mycompany/app/VID-20211030-WA0086.mp4");
+                    File f = new File(absolutePath + "src/main/resources/bill.pdf");
 
                     attachmentPart.attachFile(f);
-                    textPart.setText("This is text");
+                    textPart.setText("You can find your bill in the attached file");
                     multipart.addBodyPart(textPart);
                     multipart.addBodyPart(attachmentPart);
 
