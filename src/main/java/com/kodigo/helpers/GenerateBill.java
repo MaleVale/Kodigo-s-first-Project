@@ -15,9 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class GenerateBill {
-    public static CustomerManagement customerManagement = new CustomerManagement();
 
-    public void generatePDF(){
+    public void generatePDF(CustomerManagement cm){
         try (PDDocument doc = new PDDocument()) {
 
             PDPage myPage = new PDPage();
@@ -39,22 +38,19 @@ public class GenerateBill {
                 cont.showText(line);
 
                 cont.newLine();
-                String customer = "CUSTOMER: " + customerManagement.getCustomer().getName();
+                String customer = "CUSTOMER: " + cm.getCustomer().getName();
                 cont.showText(customer);
-                System.out.println(customer);
 
                 cont.newLine();
-                String email = "EMAIL: " + customerManagement.getCustomer().getEmail();
+                String email = "EMAIL: " + cm.getCustomer().getEmail();
                 cont.showText(email);
-                System.out.println(email);
 
                 cont.newLine();
-                String address = "ADDRESS: " + customerManagement.getCustomer().getAddress();
+                String address = "ADDRESS: " + cm.getCustomer().getAddress();
                 cont.showText(address);
-                System.out.println(address);
 
                 cont.newLine();
-                String date = new SimpleDateFormat("MM-dd-yyyy").format(Calendar.getInstance().getTime());
+                String date = "DATE: " + new SimpleDateFormat("MM-dd-yyyy").format(Calendar.getInstance().getTime());
                 cont.showText(date);
 
                 cont.newLine();
@@ -62,13 +58,13 @@ public class GenerateBill {
                 cont.showText(subTitle);
 
                 cont.newLine();
-                for (int i = 0; i < customerManagement.getCustomer().getPurchases().get(customerManagement.getCustomer().getPurchases().size()-1).getProducts().size(); i++) {
-                    cont.showText((i+1)+customerManagement.getCustomer().getPurchases().get(customerManagement.getCustomer().getPurchases().size()-1).getProducts().get(i).cartToString());
+                for (int i = 0; i < cm.getCustomer().getPurchases().get(cm.getCustomer().getPurchases().size()-1).getProducts().size(); i++) {
+                    cont.showText((i+1)+cm.getCustomer().getPurchases().get(cm.getCustomer().getPurchases().size()-1).getProducts().get(i).cartToString());
                     cont.appendRawCommands("'\n");
                 }
                 cont.newLine();
-                BigDecimal Total = customerManagement.getCustomer().getPurchases().get(0).getTotal();
-                cont.showText("TOTAL : $"+Total);
+                BigDecimal total = cm.getCustomer().getPurchases().get(0).getTotal();
+                cont.showText("TOTAL : $" + total);
 
                 cont.endText();
             }

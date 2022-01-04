@@ -3,23 +3,14 @@ import com.kodigo.models.Product;
 import com.kodigo.models.Purchase;
 import com.kodigo.repository.CustomerManagement;
 import com.kodigo.repository.ProductRepository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -191,13 +182,7 @@ public class  Main {
                 case "4" -> productRepository.showProductRepository();
                 // ends the shopping
                 case "5" -> {
-                    //stayOnMenu = false;
-                    System.out.println(customerManagement.getCustomer().getName());
                     endShopping();
-                    // creating instance of GenerateBill class
-                    GenerateBill gb = new GenerateBill();
-                    // creating pdf file
-                    gb.generatePDF();
                 }
                 // closes the program
                 case "6" -> stayOnMenu = false;
@@ -389,6 +374,10 @@ public class  Main {
             cart.clear();
             // message
             System.out.println("Purchase added successfully");
+            // creating instance of GenerateBill class
+            GenerateBill gb = new GenerateBill();
+            // creating pdf file
+            gb.generatePDF(customerManagement);
         } else {
             System.out.println("There is no products to create a purchase");
         }
