@@ -413,8 +413,8 @@ public class  Main {
                 cont.showText(date);
 
                 cont.newLine();
-                for (int i = 0; i < customerManagement.getCustomer().getPurchases().get(0).getProducts().size(); i++) {
-                    cont.showText((i+1)+customerManagement.getCustomer().getPurchases().get(0).getProducts().get(i).cartToString());
+                for (int i = 0; i < customerManagement.getCustomer().getPurchases().get(customerManagement.getCustomer().getPurchases().size()-1).getProducts().size(); i++) {
+                    cont.showText((i+1)+customerManagement.getCustomer().getPurchases().get(customerManagement.getCustomer().getPurchases().size()-1).getProducts().get(i).cartToString());
                     cont.appendRawCommands("'\n");
                 }
 
@@ -433,7 +433,7 @@ public class  Main {
                 cont.endText();
             }
 
-            doc.save("src/main/resources/bill.pdf");
+            doc.save("src/main/resources/bill"+customerManagement.getCustomer().getPurchases().size()+".pdf");
 
         }
         }
