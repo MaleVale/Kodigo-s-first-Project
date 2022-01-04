@@ -32,10 +32,6 @@ public class Product extends Tax{
         return String.format(". Shoes: %s | On cart: %d | Price: $%.2f | Subtotal: $%.2f",
                 name, stock, price, price.multiply(BigDecimal.valueOf(stock)));
     }
-    public String test (){
 
-        return name +" " + stock+ " " +price;
-
-    }
 
 }
