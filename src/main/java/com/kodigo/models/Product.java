@@ -29,7 +29,8 @@ public class Product extends Tax{
     }
 
     public String cartToString(){
-        return String.format(". Shoes: %s | On cart: %d | Price: $%.2f | Subtotal: (Needs to be calculated)", name, stock, price);
+        return String.format(". Shoes: %s | On cart: %d | Price: $%.2f | Subtotal: $%.2f",
+                name, stock, price, price.multiply(BigDecimal.valueOf(stock)));
     }
 
 }

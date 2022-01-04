@@ -174,7 +174,6 @@ public class  Main {
             System.out.println("4. See available products");
             System.out.println("5. End shopping");
             System.out.println("6. Exit");
-            System.out.println("7. Print and Send Bill");
             // message
             System.out.print("\nSelect an option: ");
             // switch for multiple cases
