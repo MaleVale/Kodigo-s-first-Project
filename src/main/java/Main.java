@@ -413,11 +413,13 @@ public class  Main {
                 cont.showText(date);
 
                 cont.newLine();
-                String products = Arrays.toString(new ArrayList[]{cart});
-                cont.showText(products);
+                for (int i = 0; i < customerManagement.getCustomer().getPurchases().get(0).getProducts().size(); i++) {
+                    cont.showText(customerManagement.getCustomer().getPurchases().get(0).getProducts().get(i).test());
+                    
+                }
 
                 cont.newLine();
-                BigDecimal subTotal = customerManagement.getCustomer().getPurchases().get(0).getSubTotal();
+                BigDecimal subTotal = customerManagement.getCustomer().getPurchases().get(0).getTotal();
                 cont.showText(String.valueOf(subTotal));
 
                 cont.newLine();
