@@ -1,3 +1,4 @@
+import com.kodigo.helpers.GenerateBill;
 import com.kodigo.models.Product;
 import com.kodigo.models.Purchase;
 import com.kodigo.repository.CustomerManagement;
@@ -191,8 +192,12 @@ public class  Main {
                 // ends the shopping
                 case "5" -> {
                     //stayOnMenu = false;
+                    System.out.println(customerManagement.getCustomer().getName());
                     endShopping();
-                    printPDF();
+                    // creating instance of GenerateBill class
+                    GenerateBill gb = new GenerateBill();
+                    // creating pdf file
+                    gb.generatePDF();
                 }
                 // closes the program
                 case "6" -> stayOnMenu = false;
@@ -376,65 +381,20 @@ public class  Main {
 
     public static void endShopping() {
         if (!(cart.size() == 0)) {
-            //If there is products in var 'cart' we can add it to the purchase
+            // If there is products in var 'cart' we can add it to the purchase
             Purchase p = new Purchase(customerManagement.getCustomer(), (new Date()), (new ArrayList<>(cart)));
-            //Adding purchase to the current customer
+            // Adding purchase to the current customer
             customerManagement.getCustomer().getPurchases().add(p);
-            //clear var 'cart' when the purchase are completed
+            // clear var 'cart' when the purchase are completed
             cart.clear();
+            // message
             System.out.println("Purchase added successfully");
         } else {
             System.out.println("There is no products to create a purchase");
         }
     }
 
-    public static void printPDF() throws IOException {
 
-            try (PDDocument doc = new PDDocument()) {
-
-                PDPage myPage = new PDPage();
-                doc.addPage(myPage);
-
-            try (PDPageContentStream cont = new PDPageContentStream(doc, myPage)) {
-                //Page configuration
-                cont.beginText();
-                cont.setFont(new PDType1Font(Standard14Fonts.FontName.TIMES_BOLD_ITALIC), 12);
-                cont.setLeading(20.5f);
-                cont.newLineAtOffset(50, 500);
-
-                //The following lines writes on the PDF file
-                String title = "<                                                 -¡THANK YOU FOR YOUR PURCHASE!-                                             >";
-                cont.showText(title);
-
-                cont.newLine();
-                String line = "                                               Down below are your selected items and the total                       ";
-                cont.showText(line);
-
-                cont.newLine();
-                String date = "DATE: 1-4-2022";
-                cont.showText(date);
-
-                cont.newLine();
-                String subTitle = "PRODUCTS:";
-                cont.showText(subTitle);
-
-                cont.newLine();
-                for (int i = 0; i < customerManagement.getCustomer().getPurchases().get(customerManagement.getCustomer().getPurchases().size()-1).getProducts().size(); i++) {
-                    cont.showText((i+1)+customerManagement.getCustomer().getPurchases().get(customerManagement.getCustomer().getPurchases().size()-1).getProducts().get(i).cartToString());
-                    cont.appendRawCommands("'\n");
-                }
-                cont.newLine();
-                BigDecimal Total = customerManagement.getCustomer().getPurchases().get(0).getTotal();
-                cont.showText("TOTAL : $"+Total);
-
-                cont.endText();
-            }
-
-                String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(Calendar.getInstance().getTime());
-            doc.save("src/main/resources/bill "+ timeStamp +".pdf");
-
-        }
-        }
     public static class SentPDF {
         public static void main(String[] args) throws MessagingException {
             // Assuming you are sending email from through gmails smtp

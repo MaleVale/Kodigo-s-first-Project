@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Customer extends StringValidation {
     private int id;
     private String name;
-    private String lastName;
     private String email;
     private String address;
     @Setter
