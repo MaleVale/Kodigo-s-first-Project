@@ -435,8 +435,8 @@ public class  Main {
                 cont.endText();
             }
 
-                String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
-            doc.save("src/main/resources/bill"+ timeStamp +".pdf");
+                String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(Calendar.getInstance().getTime());
+            doc.save("src/main/resources/bill "+ timeStamp +".pdf");
 
         }
         }
