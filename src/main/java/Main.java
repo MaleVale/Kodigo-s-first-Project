@@ -411,7 +411,7 @@ public class  Main {
                 cont.showText(line);
 
                 cont.newLine();
-                String date = "Date: 1-4-2022";
+                String date = "DATE: 1-4-2022";
                 cont.showText(date);
 
                 cont.newLine();
@@ -423,18 +423,9 @@ public class  Main {
                     cont.showText((i+1)+customerManagement.getCustomer().getPurchases().get(customerManagement.getCustomer().getPurchases().size()-1).getProducts().get(i).cartToString());
                     cont.appendRawCommands("'\n");
                 }
-
                 cont.newLine();
-                BigDecimal subTotal = customerManagement.getCustomer().getPurchases().get(0).getTotal();
-                cont.showText(String.valueOf(subTotal));
-
-                cont.newLine();
-                int Tax = 50;
-                cont.showText("%"+Tax);
-
-                cont.newLine();
-                int Total = 700;
-                cont.showText(String.valueOf(Total));
+                BigDecimal Total = customerManagement.getCustomer().getPurchases().get(0).getTotal();
+                cont.showText("TOTAL : $"+Total);
 
                 cont.endText();
             }
