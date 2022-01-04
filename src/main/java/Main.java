@@ -415,6 +415,10 @@ public class  Main {
                 cont.showText(date);
 
                 cont.newLine();
+                String subTitle = "PRODUCTS:";
+                cont.showText(subTitle);
+
+                cont.newLine();
                 for (int i = 0; i < customerManagement.getCustomer().getPurchases().get(customerManagement.getCustomer().getPurchases().size()-1).getProducts().size(); i++) {
                     cont.showText((i+1)+customerManagement.getCustomer().getPurchases().get(customerManagement.getCustomer().getPurchases().size()-1).getProducts().get(i).cartToString());
                     cont.appendRawCommands("'\n");
