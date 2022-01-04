@@ -10,13 +10,24 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
-
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Scanner;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
 
-public class Main {
+public class  Main {
     // objects and instances
     public static CustomerManagement customerManagement = new CustomerManagement();
     public static ProductRepository productRepository = new ProductRepository();
@@ -24,7 +35,7 @@ public class Main {
     // arraylist for cart
     public static ArrayList<Product> cart = new ArrayList<Product>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // welcome Message
         System.out.println("--------------------- WELCOME TO THE KODIGO'S STORE ---------------------");
 
@@ -151,7 +162,7 @@ public class Main {
         }
     }
 
-    public static void startShopping() {
+    public static void startShopping() throws IOException {
         // variable for the loop
         boolean stayOnMenu = true;
         // starts the loop of the menu
@@ -165,6 +176,7 @@ public class Main {
             System.out.println("4. See available products");
             System.out.println("5. End shopping");
             System.out.println("6. Exit");
+            System.out.println("7. Print and Send Bill");
             // message
             System.out.print("\nSelect an option: ");
             // switch for multiple cases
@@ -186,6 +198,8 @@ public class Main {
                 case "6" -> stayOnMenu = false;
                 // default option
                 default -> System.out.println("You have entered an invalid option.");
+                //prints and sents de bill via email.
+                case "7" ->printPDF();
             }
         }
 
@@ -364,7 +378,7 @@ public class Main {
         if (!(cart.size() == 0)) {
             //If there is products in var 'cart' we can add it to the purchase
             Purchase p = new Purchase(customerManagement.getCustomer(), (new Date()), (new ArrayList<>(cart)));
-            //Adding purchase to de current customer
+            //Adding purchase to the current customer
             customerManagement.getCustomer().getPurchases().add(p);
             //clear var 'cart' when the purchase are completed
             cart.clear();
@@ -427,5 +441,88 @@ public class Main {
 
         }
         }
+    public class SentPDF {
+        public static void main(String[] args) throws MessagingException {
+            // Assuming you are sending email from through gmails smtp
+            String host = "smtp.gmail.com";
+
+            // Get system properties
+            Properties properties = System.getProperties();
+
+            //Getting the absolute path of the system
+            String absolutePath = properties.getProperty("user.dir");
+
+            // Setup mail server
+            properties.put("mail.smtp.host", host);
+            properties.put("mail.smtp.port", "465");
+            properties.put("mail.smtp.ssl.enable", "true");
+            properties.put("mail.smtp.auth", "true");
+
+            // Recipient's email ID needs to be mentioned.
+            String to = "riv.edu10@gmail.com";
+
+            // Sender's email ID needs to be mentioned
+            String from = "citigersystem@gmail.com";
+
+            // Get the Session object.// and pass
+            Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+
+                    return new PasswordAuthentication("citigersystem@gmail.com", "citiger123");
+
+                }
+
+            });
+            //session.setDebug(true);
+            try {
+                // Create a default MimeMessage object.
+                MimeMessage message = new MimeMessage(session);
+
+                // Set From: header field of the header.
+                message.setFrom(new InternetAddress(from));
+
+                // Set To: header field of the header.
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+                // Set Subject: header field
+                message.setSubject("This is the Subject Line!");
+
+                Multipart multipart = new MimeMultipart();
+
+                MimeBodyPart attachmentPart = new MimeBodyPart();
+
+                MimeBodyPart textPart = new MimeBodyPart();
+
+                try {
+
+                    File f = new File(absolutePath + "/src/main/java/com/mycompany/app/VID-20211030-WA0086.mp4");
+
+                    attachmentPart.attachFile(f);
+                    textPart.setText("This is text");
+                    multipart.addBodyPart(textPart);
+                    multipart.addBodyPart(attachmentPart);
+
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+
+                }
+
+                message.setContent(multipart);
+
+                System.out.println("sending...");
+                // Send message
+                Transport.send(message);
+                System.out.println("Sent message successfully....");
+            } catch (MessagingException mex) {
+                mex.printStackTrace();
+            }
+        }
+
+    }
+
+
     }
 
