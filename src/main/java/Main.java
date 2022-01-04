@@ -17,6 +17,7 @@ import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 import javax.mail.Message;
@@ -434,7 +435,8 @@ public class  Main {
                 cont.endText();
             }
 
-            doc.save("src/main/resources/bill"+ LocalDateTime.now() +".pdf");
+                String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+            doc.save("src/main/resources/bill"+ timeStamp +".pdf");
 
         }
         }
