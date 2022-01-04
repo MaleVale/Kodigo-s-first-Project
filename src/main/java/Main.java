@@ -1,3 +1,4 @@
+import com.kodigo.helpers.EmailHelper;
 import com.kodigo.helpers.GenerateBill;
 import com.kodigo.models.Product;
 import com.kodigo.models.Purchase;
@@ -376,8 +377,12 @@ public class  Main {
             System.out.println("Purchase added successfully");
             // creating instance of GenerateBill class
             GenerateBill gb = new GenerateBill();
-            // creating pdf file
-            gb.generatePDF(customerManagement);
+            // creating pdf file and saving the return
+            String filename = gb.generatePDF(customerManagement);
+            // creating instance of EmailHelper class
+            EmailHelper eh = new EmailHelper();
+            // sending bill through email
+            eh.sendEmail(customerManagement, filename);
         } else {
             System.out.println("There is no products to create a purchase");
         }
@@ -386,73 +391,7 @@ public class  Main {
 
     public static class SentPDF {
         public static void main(String[] args) throws MessagingException {
-            // Assuming you are sending email from through gmails smtp
-            String host = "smtp.gmail.com";
 
-            // Get system properties
-            Properties properties = System.getProperties();
-
-            //Getting the absolute path of the system
-            String absolutePath = properties.getProperty("user.dir");
-
-            // Setup mail server
-            properties.put("mail.smtp.host", host);
-            properties.put("mail.smtp.port", "465");
-            properties.put("mail.smtp.ssl.enable", "true");
-            properties.put("mail.smtp.auth", "true");
-
-            // Recipient's email ID needs to be mentioned.
-            String to = "malenavalentina0703@gmail.com";
-
-            // Sender's email ID needs to be mentioned
-            String from = "proyectokodigo123@gmail.com";
-
-            // Get the Session object.// and pass
-            Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-
-                @Override
-                protected PasswordAuthentication getPasswordAuthentication() {
-
-                    return new PasswordAuthentication("proyectokodigo123@gmail.com", "callefalsa123");
-                }
-            });
-            //session.setDebug(true);
-            try {
-                // Create a default MimeMessage object.
-                MimeMessage message = new MimeMessage(session);
-                // Set From: header field of the header.
-                message.setFrom(new InternetAddress(from));
-                // Set To: header field of the header.
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-                // Set Subject: header field
-                message.setSubject("Your bill is here!");
-                Multipart multipart = new MimeMultipart();
-                MimeBodyPart attachmentPart = new MimeBodyPart();
-                MimeBodyPart textPart = new MimeBodyPart();
-                try {
-
-                    File f = new File(absolutePath + "src/main/resources/bill.pdf");
-
-                    attachmentPart.attachFile(f);
-                    textPart.setText("You can find your bill in the attached file");
-                    multipart.addBodyPart(textPart);
-                    multipart.addBodyPart(attachmentPart);
-
-                } catch (IOException e) {
-
-                    e.printStackTrace();
-
-                }
-
-                message.setContent(multipart);
-
-                System.out.println("sending...");
-                // Send message
-                Transport.send(message);
-                System.out.println("Sent message successfully....");
-            } catch (MessagingException mex) {
-                mex.printStackTrace();
-            }
         }
 
     }

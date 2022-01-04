@@ -17,7 +17,8 @@ import java.util.Calendar;
 
 public class GenerateBill {
 
-    public void generatePDF(CustomerManagement cm){
+    public String generatePDF(CustomerManagement cm) {
+        String filename = null;
         try (PDDocument doc = new PDDocument()) {
 
             PDPage myPage = new PDPage();
@@ -61,23 +62,26 @@ public class GenerateBill {
                 cont.showText(subTitle);
 
                 cont.newLine();
-                for (int i = 0; i < cm.getCustomer().getPurchases().get(cm.getCustomer().getPurchases().size()-1).getProducts().size(); i++) {
-                    cont.showText((i+1)+cm.getCustomer().getPurchases().get(cm.getCustomer().getPurchases().size()-1).getProducts().get(i).cartToString());
+                for (int i = 0; i < cm.getCustomer().getPurchases().get(cm.getCustomer().getPurchases().size() - 1).getProducts().size(); i++) {
+                    cont.showText((i + 1) + cm.getCustomer().getPurchases().get(cm.getCustomer().getPurchases().size() - 1).getProducts().get(i).cartToString());
                     cont.appendRawCommands("'\n");
                 }
                 cont.newLine();
                 DecimalFormat df = new DecimalFormat("#.00");
                 BigDecimal total = cm.getCustomer().getPurchases().get(0).getTotal();
-                cont.showText("TOTAL : $" + df.format(total));
+                cont.showText("TOTAL: $" + df.format(total));
 
                 cont.endText();
             }
 
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(Calendar.getInstance().getTime());
-            doc.save("src/main/resources/bill " + cm.getCustomer().getName() + timeStamp +".pdf");
+
+            filename = "src/main/resources/bill" + cm.getCustomer().getName() + timeStamp + ".pdf";
+            doc.save(filename);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return filename;
     }
 }
