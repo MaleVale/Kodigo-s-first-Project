@@ -17,6 +17,7 @@ import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.*;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -433,7 +434,7 @@ public class  Main {
                 cont.endText();
             }
 
-            doc.save("src/main/resources/bill"+(new Date())+".pdf");
+            doc.save("src/main/resources/bill"+ LocalDateTime.now() +".pdf");
 
         }
         }
