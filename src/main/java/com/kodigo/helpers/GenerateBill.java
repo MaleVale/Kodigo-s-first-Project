@@ -11,6 +11,7 @@ import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -25,17 +26,18 @@ public class GenerateBill {
             try (PDPageContentStream cont = new PDPageContentStream(doc, myPage)) {
                 //Page configuration
                 cont.beginText();
-                cont.setFont(new PDType1Font(Standard14Fonts.FontName.TIMES_BOLD_ITALIC), 12);
+                cont.setFont(new PDType1Font(Standard14Fonts.FontName.COURIER), 12);
                 cont.setLeading(20.5f);
                 cont.newLineAtOffset(50, 500);
 
                 //The following lines writes on the PDF file
-                String title = "<                                                 -¡THANK YOU FOR YOUR PURCHASE!-                                             >";
+                String title = "<-¡THANK YOU FOR YOUR PURCHASE!->";
                 cont.showText(title);
 
                 cont.newLine();
-                String line = "                                               Down below are your selected items and the total                       ";
+                String line = "Down below are your selected items and the total";
                 cont.showText(line);
+                cont.appendRawCommands("'\n");
 
                 cont.newLine();
                 String customer = "CUSTOMER: " + cm.getCustomer().getName();
@@ -52,6 +54,7 @@ public class GenerateBill {
                 cont.newLine();
                 String date = "DATE: " + new SimpleDateFormat("MM-dd-yyyy").format(Calendar.getInstance().getTime());
                 cont.showText(date);
+                cont.appendRawCommands("'\n");
 
                 cont.newLine();
                 String subTitle = "PRODUCTS:";
@@ -63,14 +66,15 @@ public class GenerateBill {
                     cont.appendRawCommands("'\n");
                 }
                 cont.newLine();
+                DecimalFormat df = new DecimalFormat("#.00");
                 BigDecimal total = cm.getCustomer().getPurchases().get(0).getTotal();
-                cont.showText("TOTAL : $" + total);
+                cont.showText("TOTAL : $" + df.format(total));
 
                 cont.endText();
             }
 
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(Calendar.getInstance().getTime());
-            doc.save("src/main/resources/bill "+ timeStamp +".pdf");
+            doc.save("src/main/resources/bill " + cm.getCustomer().getName() + timeStamp +".pdf");
 
         } catch (IOException e) {
             e.printStackTrace();
