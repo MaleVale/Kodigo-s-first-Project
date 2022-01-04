@@ -433,7 +433,7 @@ public class  Main {
                 cont.endText();
             }
 
-            doc.save("src/main/resources/bill"+customerManagement.getCustomer().getPurchases().size()+".pdf");
+            doc.save("src/main/resources/bill"+(new Date())+".pdf");
 
         }
         }
