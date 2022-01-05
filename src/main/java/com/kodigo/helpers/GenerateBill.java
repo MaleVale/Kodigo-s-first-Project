@@ -53,7 +53,7 @@ public class GenerateBill {
                 cont.showText(address);
 
                 cont.newLine();
-                String date = "DATE: " + new SimpleDateFormat("MM-dd-yyyy").format(Calendar.getInstance().getTime());
+                String date = "DATE: " + new SimpleDateFormat("MM-dd-yyyy HH:mm").format(Calendar.getInstance().getTime());
                 cont.showText(date);
                 cont.appendRawCommands("'\n");
 
@@ -69,6 +69,13 @@ public class GenerateBill {
                 cont.newLine();
                 DecimalFormat df = new DecimalFormat("#.00");
                 BigDecimal total = cm.getCustomer().getPurchases().get(0).getTotal();
+                BigDecimal tax = cm.getCustomer().getPurchases().get(0).getTax();
+                BigDecimal subtotal = cm.getCustomer().getPurchases().get(0).getSubTotal();
+
+                cont.showText("SUBTOTAL: $" + df.format(subtotal));
+                cont.appendRawCommands("'\n");
+                cont.showText("TAX $:" + df.format(tax));
+                cont.appendRawCommands("'\n");
                 cont.showText("TOTAL: $" + df.format(total));
 
                 cont.endText();

@@ -23,7 +23,7 @@ public class StringValidation {
         // checks if the value has the max length allowed
         if (value.length() <= max) {
             // compiles the character sequence as a pattern
-            Pattern pat = Pattern.compile("^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$");
+            Pattern pat = Pattern.compile("^[a-zA-Z0-9_ .]+$");
             // checks if there's a match with the pattern and the value
             Matcher mat = pat.matcher(value);
             // returns true or false
