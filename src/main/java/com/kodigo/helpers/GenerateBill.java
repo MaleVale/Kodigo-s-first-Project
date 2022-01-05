@@ -14,7 +14,7 @@ import java.util.Calendar;
 
 public class GenerateBill {
 
-    public String generatePDF(CustomerManagement cm) {
+    public String generatePdf(CustomerManagement cm) {
         String filename = null;
         try (PDDocument doc = new PDDocument()) {
 

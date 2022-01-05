@@ -6,7 +6,7 @@ import com.kodigo.models.Purchase;
 import com.kodigo.repository.CustomerManagement;
 import com.kodigo.repository.ProductRepository;
 import org.apache.commons.lang3.math.NumberUtils;
-import java.io.IOException;
+
 import java.util.*;
 
 public class  Main {
@@ -351,7 +351,7 @@ public class  Main {
             // creating instance of GenerateBill class
             GenerateBill gb = new GenerateBill();
             // creating pdf file and saving the return
-            String filename = gb.generatePDF(customerManagement);
+            String filename = gb.generatePdf(customerManagement);
             // creating instance of EmailHelper class
             EmailHelper eh = new EmailHelper();
             // sending bill through email
