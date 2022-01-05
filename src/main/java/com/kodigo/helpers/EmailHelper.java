@@ -28,15 +28,16 @@ public class EmailHelper {
         String to = cm.getCustomer().getEmail();
 
         // Sender's email ID needs to be mentioned
-        String from = "proyectokodigo123@gmail.com";
+        String from = "citigersystem@gmail.com";
 
-        // Get the Session object.// and pass
+        // Get the Session object.// and pass1
+
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication("proyectokodigo123@gmail.com", "callefalsa123");
+                return new PasswordAuthentication("citigersystem@gmail.com", "citiger123");
             }
         });
 

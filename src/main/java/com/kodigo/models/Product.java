@@ -21,12 +21,8 @@ public class Product extends Tax{
         initializeTax(price);
     }
 
-    public String toString(){
-        return String.format("%d. Shoes: %s | Available: %d | Price: $%.2f", id, name, stock, price);
-    }
-
     public String cartToString(){
-        return String.format(". Shoes: %s | On cart: %d | Price: $%.2f | Subtotal: $%.2f",
+        return String.format(". Shoes: %s | Units: %d | Price: $%.2f | Amount: $%.2f",
                 name, stock, price, price.multiply(BigDecimal.valueOf(stock)));
     }
 

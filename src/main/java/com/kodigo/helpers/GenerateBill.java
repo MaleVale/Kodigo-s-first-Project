@@ -71,7 +71,7 @@ public class GenerateBill {
 
                 cont.showText("SUBTOTAL: $" + df.format(subtotal));
                 cont.appendRawCommands("'\n");
-                cont.showText("TAX $:" + df.format(tax));
+                cont.showText("TAX: $" + df.format(tax));
                 cont.appendRawCommands("'\n");
                 cont.showText("TOTAL: $" + df.format(total));
 
