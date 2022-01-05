@@ -242,7 +242,10 @@ public class  Main {
                                     productRepository
                                             .getProducts()
                                             .get(id)
-                                            .setStock(productRepository.getProducts().get(id).getStock() - Integer.parseInt(stock));
+                                            .setStock
+                                                    (productRepository.
+                                                            getProducts().get(id)
+                                                            .getStock() - Integer.parseInt(stock));
                                     cart.add(
                                             new Product(
                                                     productRepository.getProducts().get(id).getId(),
