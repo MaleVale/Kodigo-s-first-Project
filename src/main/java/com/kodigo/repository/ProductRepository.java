@@ -25,14 +25,9 @@ public class ProductRepository {
         products.add(new Product(7, "Puma", "Suede Classic XXI", BigDecimal.valueOf(55.99), 31));
     }
 
-    public void showProductRepository() {
-        // message
-        System.out.println("\nWelcome! These are our available products\n");
-
-        // prints the array
-        for (Product product : products) {
-            System.out.println(product.toString());
-        }
+    public ArrayList<Product> returnProductRepository() {
+        // returns the array
+        return products;
     }
 
     public int returnInventoryLength(){

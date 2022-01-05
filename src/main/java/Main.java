@@ -1,30 +1,19 @@
 import com.kodigo.helpers.EmailHelper;
 import com.kodigo.helpers.GenerateBill;
+import com.kodigo.helpers.TableHelper;
 import com.kodigo.models.Product;
 import com.kodigo.models.Purchase;
 import com.kodigo.repository.CustomerManagement;
 import com.kodigo.repository.ProductRepository;
-import com.kodigo.validations.StringValidation;
 import org.apache.commons.lang3.math.NumberUtils;
-
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
 
 public class  Main {
     // objects and instances
     public static CustomerManagement customerManagement = new CustomerManagement();
     public static ProductRepository productRepository = new ProductRepository();
+    public static TableHelper tableHelper = new TableHelper();
     public static final Scanner scan = new Scanner(System.in);
     // arraylist for cart
     public static ArrayList<Product> cart = new ArrayList<Product>();
@@ -179,9 +168,9 @@ public class  Main {
                 // delete products from the cart
                 case "2" -> deleteFromCart();
                 // checks the products added to the cart
-                case "3" -> checkCart();
+                case "3" -> tableHelper.checkCart(cart);
                 // shows the available products
-                case "4" -> productRepository.showProductRepository();
+                case "4" -> tableHelper.showProductRepository(productRepository.returnProductRepository());
                 // ends the shopping
                 case "5" -> {
                     endShopping();
@@ -199,7 +188,7 @@ public class  Main {
 
     public static void addToCart() {
         // shows the list of the available products
-        productRepository.showProductRepository();
+        tableHelper.showProductRepository(productRepository.returnProductRepository());
         // message
         System.out.println("\n---------------- PLEASE READ ----------------");
         System.out.println("\n1. Type 0 if you want to go back to main menu. " +
@@ -282,7 +271,7 @@ public class  Main {
 
     public static void deleteFromCart() {
         // shows the products added to the cart
-        checkCart();
+        tableHelper.checkCart(cart);
         // message
         System.out.println("\n---------------- PLEASE READ ----------------");
         System.out.println("\n1. Type 0 if you want to go back to main menu. " +
@@ -328,7 +317,7 @@ public class  Main {
                             // message
                             System.out.println("\nProduct removed from the cart successfully!");
                             // shows the cart again
-                            checkCart();
+                            tableHelper.checkCart(cart);
                         }
                     }
                 } else {
@@ -351,23 +340,8 @@ public class  Main {
         return isOnCart;
     }
 
-    public static void checkCart() {
-        if (cart.isEmpty()) {
-            // message
-            System.out.println("\nThe cart is empty!");
-        } else {
-            int count = 1;
-            // shows the products added to the arraylist
-            for (Product product : cart) {
-                System.out.println(count + product.cartToString());
-                // sums to the count variable
-                count++;
-            }
-        }
-    }
-
     public static void endShopping() {
-        if (!(cart.size() == 0)) {
+        if (!(cart.isEmpty())) {
             // If there is products in var 'cart' we can add it to the purchase
             Purchase p = new Purchase(customerManagement.getCustomer(), (new Date()), (new ArrayList<>(cart)));
             // Adding purchase to the current customer
@@ -390,13 +364,5 @@ public class  Main {
     }
 
 
-    public static class SentPDF {
-        public static void main(String[] args) throws MessagingException {
-
-        }
-
-    }
-
-
-    }
+}
 
