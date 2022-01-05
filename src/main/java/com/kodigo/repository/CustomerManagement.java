@@ -11,7 +11,7 @@ public class CustomerManagement {
 
     public CustomerManagement(){
         this.customer = new Customer();
-        this.initialize();
     }
+
 }
 
