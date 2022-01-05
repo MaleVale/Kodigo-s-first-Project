@@ -1,6 +1,4 @@
 package com.kodigo.helpers;
-import com.kodigo.models.Product;
-import com.kodigo.models.Purchase;
 
 import com.kodigo.repository.CustomerManagement;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -8,7 +6,6 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

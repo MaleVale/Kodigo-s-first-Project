@@ -1,7 +1,6 @@
 package com.kodigo.helpers;
 
 import com.kodigo.repository.CustomerManagement;
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
@@ -13,7 +12,7 @@ import java.util.Properties;
 
 public class EmailHelper {
     public void sendEmail(CustomerManagement cm, String filename){
-        // Assuming you are sending email from through gmails smtp
+        // For sending emails through gmail smtp
         String host = "smtp.gmail.com";
 
         // Get system properties
@@ -42,41 +41,50 @@ public class EmailHelper {
         });
 
         try {
-            // Create a default MimeMessage object.
+            // create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
-            // Set From: header field of the header.
+            // set From: header field of the header.
             message.setFrom(new InternetAddress(from));
-            // Set To: header field of the header.
+            // set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            // Set Subject: header field
+            // set Subject: header field
             message.setSubject("Your bill is here!");
-            Multipart multipart = new MimeMultipart();
-            MimeBodyPart attachmentPart = new MimeBodyPart();
-            MimeBodyPart textPart = new MimeBodyPart();
-            try {
-
-                File f = new File(filename);
-
-                attachmentPart.attachFile(f);
-                textPart.setText("Hi "+cm.getCustomer().getName()+"! You can find your bill in the attached file");
-
-                multipart.addBodyPart(textPart);
-                multipart.addBodyPart(attachmentPart);
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-
-            }
-
-            message.setContent(multipart);
-
+            // adds the content from the return of prepareMessage()
+            message.setContent(prepareMessage(filename, cm));
+            // message
             System.out.println("sending...");
-            // Send message
+            // send message
             Transport.send(message);
-            System.out.println("Sent message successfully....");
+            // message
+            System.out.println("Sent message successfully!");
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
+    }
+
+    public Multipart prepareMessage(String filename, CustomerManagement cm){
+        // creates a Multipart object
+        Multipart multipart = new MimeMultipart();
+
+        try {
+            // creates a MimeBodyPart object
+            MimeBodyPart attachmentPart = new MimeBodyPart();
+            // creates a MimeBodyPart object
+            MimeBodyPart textPart = new MimeBodyPart();
+            // creates a File object with the provided filename
+            File f = new File(filename);
+            // attaches the File object to the MimeBodyPart object
+            attachmentPart.attachFile(f);
+            // adds text to MimeBodyPart object
+            textPart.setText("Hi "+cm.getCustomer().getName()+"! You can find your bill in the attached file");
+            // adds both MimeBodyPart objects to Multipart main object
+            multipart.addBodyPart(textPart);
+            multipart.addBodyPart(attachmentPart);
+
+        } catch (IOException | MessagingException e) {
+            e.printStackTrace();
+        }
+
+        return multipart;
     }
 }

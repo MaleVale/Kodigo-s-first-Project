@@ -1,7 +1,6 @@
 package com.kodigo.models;
 
 import lombok.Data;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;

@@ -14,14 +14,13 @@ public class  Main {
     public static CustomerManagement customerManagement = new CustomerManagement();
     public static ProductRepository productRepository = new ProductRepository();
     public static TableHelper tableHelper = new TableHelper();
-    public static final Scanner scan = new Scanner(System.in);
+    public static Scanner scan = new Scanner(System.in);
     // arraylist for cart
-    public static ArrayList<Product> cart = new ArrayList<Product>();
+    public static ArrayList<Product> cart = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // welcome Message
         System.out.println("--------------------- WELCOME TO THE KODIGO'S STORE ---------------------");
-
         // makes a request for typing name
         enterName();
         // makes a request for typing email
@@ -73,7 +72,6 @@ public class  Main {
     public static void enterEmail() {
         // requests for the client's email
         System.out.print("Enter your email: ");
-
         // validates that the typed email is valid, if not, gives three attempts to fix it
         if (!customerManagement.getCustomer().setEmail(scan.nextLine())) {
             // shows a message
@@ -145,7 +143,7 @@ public class  Main {
         }
     }
 
-    public static void startShopping() throws IOException {
+    public static void startShopping() {
         // variable for the loop
         boolean stayOnMenu = true;
         // starts the loop of the menu
@@ -172,15 +170,16 @@ public class  Main {
                 // shows the available products
                 case "4" -> tableHelper.showProductRepository(productRepository.returnProductRepository());
                 // ends the shopping
-                case "5" -> {
-                    endShopping();
-                }
+                case "5" -> endShopping();
                 // closes the program
-                case "6" -> stayOnMenu = false;
+                case "6" -> {
+                    // sets boolean variable to false for breaking loop
+                    stayOnMenu = false;
+                    // closes the scanner
+                    scan.close();
+                }
                 // default option
                 default -> System.out.println("You have entered an invalid option.");
-                //prints and sents de bill via email.
-
             }
         }
 
@@ -313,7 +312,6 @@ public class  Main {
                             pFromRepo.setStock(pToDelete.getStock() + pFromRepo.getStock());
                             // removes the product from the arraylist
                             cart.remove(id);
-
                             // message
                             System.out.println("\nProduct removed from the cart successfully!");
                             // shows the cart again

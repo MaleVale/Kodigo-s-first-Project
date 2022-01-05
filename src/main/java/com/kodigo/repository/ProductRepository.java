@@ -2,13 +2,12 @@ package com.kodigo.repository;
 
 import com.kodigo.models.Product;
 import lombok.Getter;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class ProductRepository {
     @Getter
-    private ArrayList<Product> products = new ArrayList<>();
+    private final ArrayList<Product> products = new ArrayList<>();
 
     public ProductRepository() {
         this.initialize();

@@ -2,7 +2,6 @@ package com.kodigo.helpers;
 
 import com.kodigo.models.Product;
 import de.vandermeer.asciitable.AsciiTable;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
