@@ -44,4 +44,4 @@ build/
 java/build/**
 
 # vs code
-.svcode/
+.vscode/
