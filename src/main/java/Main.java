@@ -5,7 +5,7 @@ import com.kodigo.models.Product;
 import com.kodigo.models.Purchase;
 import com.kodigo.repository.CustomerManagement;
 import com.kodigo.repository.ProductRepository;
-import org.apache.commons.lang3.math.NumberUtils;
+import com.kodigo.validations.NumberValidation;
 
 import java.util.*;
 
@@ -15,6 +15,7 @@ public class  Main {
     public static ProductRepository productRepository = new ProductRepository();
     public static TableHelper tableHelper = new TableHelper();
     public static Scanner scan = new Scanner(System.in);
+    public static NumberValidation numberValidation = new NumberValidation();
     // arraylist for cart
     public static ArrayList<Product> cart = new ArrayList<>();
 
@@ -175,25 +176,19 @@ public class  Main {
         System.out.println("\n---------------- PLEASE READ ----------------");
         System.out.println("\n1. Type 0 if you want to go back to main menu. " +
                 "Type the ID of the product that you want to add to the cart.");
-        // variable for the loop
+
         boolean stayOnCart = true;
-        // loop
         while (stayOnCart) {
             System.out.print("\nType the ID of the product that you want to add: ");
-            // captures the typed value as string
             String idProduct = scan.next();
-            // checks if the typed value is parsable to integer
-            if (NumberUtils.isParsable(idProduct)) {
-                // checks if the typed value is 0, or if it is available at the inventory.
+            if (numberValidation.validateStringParsableToInt(idProduct)) {
                 if (Integer.parseInt(idProduct) == 0) {
                     // closes the loop
                     stayOnCart = false;
-                    // message
                     System.out.println("\nGoing back to main menu...");
                 } else {
                     // checks that the typed number coincides with a position from the arraylist
                     if (Integer.parseInt(idProduct) > productRepository.returnInventoryLength()) {
-                        // message
                         System.out.println("\nSorry! Looks like the typed ID doesn't coincides with a product.");
                     } else {
                         // saves the id as an integer and subtracts one to coincide it with an arraylist position
@@ -204,20 +199,14 @@ public class  Main {
                                     "If you want to edit the stock, go back to main menu and remove it from the cart," +
                                     " then come back and add it again with the new stock.");
                         } else {
-                            // shows how much is available
                             System.out.println("\nAvailable: " + productRepository.getProducts().get(id).getStock());
-                            // requests to the customer how much stock wants to add to the cart
                             System.out.print("How much do you want to add of this product?: ");
-                            // saves the typed value
                             String stock = scan.next();
-                            // checks if the typed value is parsable to integer
-                            if (NumberUtils.isParsable(stock)) {
+                            if (numberValidation.validateStringParsableToInt(stock)) {
                                 // checks if the typed value doesn't surpass the max available
                                 if (Integer.parseInt(stock) > productRepository.getProducts().get(id).getStock()) {
-                                    // message
                                     System.out.println("\nSorry! Looks like stock is not enough.");
                                 } else if (Integer.parseInt(stock) == 0) {
-                                    // message
                                     System.out.println("\nSorry! You can't add 0 to cart.");
                                 } else {
                                     // adds the product to the arraylist
@@ -238,51 +227,36 @@ public class  Main {
                                             )
                                     );
                                 }
-                            } else {
-                                // message
-                                System.out.println("Sorry! Looks like you typed an invalid character.");
                             }
                         }
                     }
                 }
-            } else {
-                // the typed value is invalid.
-                System.out.println("\nSorry! Looks like you didn't type a number.");
             }
         }
 
     }
 
     public static void deleteFromCart() {
-        // shows the products added to the cart
         tableHelper.checkCart(cart);
-        // message
         System.out.println("\n---------------- PLEASE READ ----------------");
         System.out.println("\n1. Type 0 if you want to go back to main menu. " +
                 "Type the ID of the product that you want to remove from the cart.");
-        // variable for the loop
+
         boolean stayOnCart = true;
-        // loop
         while (stayOnCart) {
             if (cart.isEmpty()) {
                 stayOnCart = false;
             } else {
-                // message
                 System.out.print("\nType the ID of the product that you want to remove: ");
-                // captures the typed value as string
                 String idProduct = scan.next();
-                // checks if the typed value is parsable to integer
-                if (NumberUtils.isParsable(idProduct)) {
-                    // checks if the typed value is 0, or if it is available at the inventory.
+                if (numberValidation.validateStringParsableToInt(idProduct)) {
                     if (Integer.parseInt(idProduct) == 0) {
                         // closes the loop
                         stayOnCart = false;
-                        // message
                         System.out.println("\nGoing back to main menu...");
                     } else {
                         // checks that the typed ID corresponds to an arraylist position
                         if (Integer.parseInt(idProduct) > cart.size()) {
-                            // message
                             System.out.println("\nSorry! Looks like the typed ID doesn't coincides with a product.");
                         } else {
                             // saves the id as an integer and subtracts one to coincide it with an arraylist position
@@ -295,26 +269,18 @@ public class  Main {
                                     .findAny()
                                     .orElse(null);
                             pFromRepo.setStock(pToDelete.getStock() + pFromRepo.getStock());
-                            // removes the product from the arraylist
                             cart.remove(id);
-                            // message
                             System.out.println("\nProduct removed from the cart successfully!");
-                            // shows the cart again
                             tableHelper.checkCart(cart);
                         }
                     }
-                } else {
-                    // the typed value is invalid.
-                    System.out.println("\nSorry! Looks like you didn't type a number.");
                 }
             }
         }
     }
 
     public static boolean checkIfIsOnCart(int id) {
-        // variable for return
         boolean isOnCart = false;
-        // checks if the given id corresponds to an existing product on the cart
         for (Product product : cart) {
             /* if the product is on the cart, the return will be true, if the product is not in the cart, the return
                will be false, this means that can be added to the cart */
@@ -325,21 +291,15 @@ public class  Main {
 
     public static void endShopping() {
         if (!(cart.isEmpty())) {
-            // If there is products in var 'cart' we can add it to the purchase
             Purchase p = new Purchase(customerManagement.getCustomer(), (new Date()), (new ArrayList<>(cart)));
-            // Adding purchase to the current customer
             customerManagement.getCustomer().getPurchases().add(p);
-            // clear var 'cart' when the purchase are completed
             cart.clear();
-            // message
             System.out.println("Purchase added successfully");
-            // creating instance of GenerateBill class
+
             GenerateBill gb = new GenerateBill();
-            // creating pdf file and saving the return
             String filename = gb.generatePdf(customerManagement);
-            // creating instance of EmailHelper class
+
             EmailHelper eh = new EmailHelper();
-            // sending bill through email
             eh.sendEmail(customerManagement, filename);
         } else {
             System.out.println("There is no products to create a purchase");
