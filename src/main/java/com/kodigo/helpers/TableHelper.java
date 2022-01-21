@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class TableHelper {
     public void showProductRepository(ArrayList<Product> productRepository){
         System.out.println("\nThese are our available products:");
-        // instance for AsciiTable dependency
         AsciiTable at = new AsciiTable();
         // adds a rule
         at.addRule();
@@ -30,10 +29,8 @@ public class TableHelper {
 
     public void checkCart(ArrayList<Product> cart){
         if (cart.isEmpty()) {
-            // message
             System.out.println("\nThe cart is empty!");
         } else {
-            // message
             System.out.println("\nThis is what's on your cart: ");
             // instance for AsciiTable dependency
             AsciiTable at = new AsciiTable();
@@ -55,10 +52,8 @@ public class TableHelper {
                         "$"+product.getPrice().multiply(BigDecimal.valueOf(product.getStock())));
                 // adds a rule
                 at.addRule();
-                // sums to the count variable
                 count++;
             }
-
             System.out.println(at.render(115));
         }
     }

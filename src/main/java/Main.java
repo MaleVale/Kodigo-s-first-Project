@@ -19,25 +19,17 @@ public class  Main {
     public static ArrayList<Product> cart = new ArrayList<>();
 
     public static void main(String[] args) {
-        // welcome Message
         System.out.println("--------------------- WELCOME TO THE KODIGO'S STORE ---------------------");
-        // makes a request for typing name
         enterName();
-        // makes a request for typing email
         enterEmail();
-        // makes a request for typing address
         enterAddress();
-        // starts the loop for the shopping until the client decides to stop it
         startShopping();
-
     }
 
     public static void enterName() {
-        // starts requesting for the data of the client
         System.out.print("Enter your name: ");
         // validates that the typed name is a string and has a valid length, if not, gives three attempts to fix it
         if (!customerManagement.getCustomer().setName(scan.nextLine())) {
-            // shows a message
             System.out.println("You have entered an invalid name. You have 3 attempts to type a valid name. \n");
             // boolean variable to check if the user typed a correct name after the for loop ends
             boolean valid = false;
@@ -45,7 +37,6 @@ public class  Main {
             int attempts = 1;
             // the for loop is going to end when "i" reaches 3
             for (int i = 0; i < 3; i++) {
-                // starts requesting for the data of the client
                 System.out.print("Enter your name: ");
                 /* if the return of the method setName() is true, breaks the for loop and sets
                  the boolean variable to true */
@@ -55,26 +46,20 @@ public class  Main {
                 }
                 // shows a message if the method setName() returned false
                 System.out.println("Number of attempts: " + attempts + "\n");
-                // sums one attempt
                 attempts++;
             }
 
-            // if the valid variable is different from true, is going to kill the program.
             if (!valid) {
-                // shows the message
                 System.out.println("Sorry! It looks that you didn't type a valid name.");
-                // kills the program
                 System.exit(0);
             }
         }
     }
 
     public static void enterEmail() {
-        // requests for the client's email
         System.out.print("Enter your email: ");
         // validates that the typed email is valid, if not, gives three attempts to fix it
         if (!customerManagement.getCustomer().setEmail(scan.nextLine())) {
-            // shows a message
             System.out.println("You have entered an invalid email. You have 3 attempts to type a valid email. \n");
             // boolean variable to check if the user typed a correct email after the for loop ends
             boolean valid = false;
@@ -82,7 +67,6 @@ public class  Main {
             int attempts = 1;
             // the for loop is going to end when "i" reaches 3
             for (int i = 0; i < 3; i++) {
-                // starts requesting for the data of the client
                 System.out.print("Enter your email: ");
                 /* if the return of the method setName() is true, breaks the for loop and sets
                  the boolean variable to true */
@@ -188,7 +172,6 @@ public class  Main {
     public static void addToCart() {
         // shows the list of the available products
         tableHelper.showProductRepository(productRepository.returnProductRepository());
-        // message
         System.out.println("\n---------------- PLEASE READ ----------------");
         System.out.println("\n1. Type 0 if you want to go back to main menu. " +
                 "Type the ID of the product that you want to add to the cart.");
@@ -196,7 +179,6 @@ public class  Main {
         boolean stayOnCart = true;
         // loop
         while (stayOnCart) {
-            // message
             System.out.print("\nType the ID of the product that you want to add: ");
             // captures the typed value as string
             String idProduct = scan.next();

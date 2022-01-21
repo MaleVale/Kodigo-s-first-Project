@@ -1,9 +1,0 @@
-
-G
-java:S1602!",Remove useless curly braces around statement(«Ôüÿÿÿÿ
-G
-java:S1602'",Remove useless curly braces around statement(«Ôüÿÿÿÿ
-E
-java:S1172,"/Remove this unused method parameter "products".(’ùõµ
-~
-java:S1319"hThe type of "products" should be an interface such as "List" rather than the implementation "ArrayList".(éÒñí

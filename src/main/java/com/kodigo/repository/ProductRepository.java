@@ -14,7 +14,6 @@ public class ProductRepository {
     }
 
     private void initialize() {
-        // data for the array
         products.add((new Product(1, "Under Armour", "Charged Assert", BigDecimal.valueOf(56.90), 32)));
         products.add(new Product(2, "Steve Madden", "Fenta", BigDecimal.valueOf(49.08), 100));
         products.add(new Product(3, "Clarks", "Tilden Cap Oxford", BigDecimal.valueOf(78.94), 45));
@@ -25,12 +24,10 @@ public class ProductRepository {
     }
 
     public ArrayList<Product> returnProductRepository() {
-        // returns the array
         return products;
     }
 
     public int returnInventoryLength(){
-        // return array length
         return products.size();
     }
 

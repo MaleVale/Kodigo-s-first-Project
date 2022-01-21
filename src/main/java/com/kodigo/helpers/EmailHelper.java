@@ -52,11 +52,8 @@ public class EmailHelper {
             message.setSubject("Your bill is here!");
             // adds the content from the return of prepareMessage()
             message.setContent(prepareMessage(filename, cm));
-            // message
             System.out.println("sending...");
-            // send message
             Transport.send(message);
-            // message
             System.out.println("Sent message successfully!");
         } catch (MessagingException mex) {
             mex.printStackTrace();
