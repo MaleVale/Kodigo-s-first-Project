@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class TableHelper {
-    public void showProductRepository(ArrayList<Product> productRepository){
+    public static void showProductRepository(ArrayList<Product> productRepository){
         System.out.println("\nThese are our available products:");
         AsciiTable at = new AsciiTable();
         // adds a rule
@@ -27,7 +27,7 @@ public class TableHelper {
         System.out.println(at.render(115));
     }
 
-    public void checkCart(ArrayList<Product> cart){
+    public static void checkCart(ArrayList<Product> cart){
         if (cart.isEmpty()) {
             System.out.println("\nThe cart is empty!");
         } else {

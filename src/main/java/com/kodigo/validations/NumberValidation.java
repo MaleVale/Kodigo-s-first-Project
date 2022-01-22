@@ -3,8 +3,6 @@ package com.kodigo.validations;
 import com.kodigo.helpers.LogCreator;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import java.io.IOException;
-
 public class NumberValidation {
     public static LogCreator log = LogCreator.getInstance();
 

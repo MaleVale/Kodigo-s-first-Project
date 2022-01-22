@@ -1,23 +1,16 @@
 package com.kodigo.models;
 
 import com.kodigo.validations.StringValidation;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import java.util.ArrayList;
 
 @NoArgsConstructor
+@Data
 public class Customer {
-    @Getter
-    private int id;
-    @Getter
     private String name;
-    @Getter
     private String email;
-    @Getter
     private String address;
-    @Setter
-    @Getter
     private ArrayList<Purchase> purchases = new ArrayList<>();
 
     private StringValidation validator = new StringValidation();

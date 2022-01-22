@@ -14,7 +14,7 @@ import java.util.Calendar;
 
 public class GenerateBill {
 
-    public String generatePdf(CustomerManagement cm) {
+    public String generatePdf() {
         String filename = null;
         try (PDDocument doc = new PDDocument()) {
 
@@ -38,15 +38,15 @@ public class GenerateBill {
                 cont.appendRawCommands("'\n");
 
                 cont.newLine();
-                String customer = "CUSTOMER: " + cm.getCustomer().getName();
+                String customer = "CUSTOMER: " + CustomerManagement.getCustomer().getName();
                 cont.showText(customer);
 
                 cont.newLine();
-                String email = "EMAIL: " + cm.getCustomer().getEmail();
+                String email = "EMAIL: " + CustomerManagement.getCustomer().getEmail();
                 cont.showText(email);
 
                 cont.newLine();
-                String address = "ADDRESS: " + cm.getCustomer().getAddress();
+                String address = "ADDRESS: " + CustomerManagement.getCustomer().getAddress();
                 cont.showText(address);
 
                 cont.newLine();
@@ -59,15 +59,15 @@ public class GenerateBill {
                 cont.showText(subTitle);
 
                 cont.newLine();
-                for (int i = 0; i < cm.getCustomer().getPurchases().get(cm.getCustomer().getPurchases().size() - 1).getProducts().size(); i++) {
-                    cont.showText((i + 1) + cm.getCustomer().getPurchases().get(cm.getCustomer().getPurchases().size() - 1).getProducts().get(i).cartToString());
+                for (int i = 0; i < CustomerManagement.getCustomer().getPurchases().get(CustomerManagement.getCustomer().getPurchases().size() - 1).getProducts().size(); i++) {
+                    cont.showText((i + 1) + CustomerManagement.getCustomer().getPurchases().get(CustomerManagement.getCustomer().getPurchases().size() - 1).getProducts().get(i).cartToString());
                     cont.appendRawCommands("'\n");
                 }
                 cont.newLine();
                 DecimalFormat df = new DecimalFormat("#.00");
-                BigDecimal total = cm.getCustomer().getPurchases().get(0).getTotal();
-                BigDecimal tax = cm.getCustomer().getPurchases().get(0).getTax();
-                BigDecimal subtotal = cm.getCustomer().getPurchases().get(0).getSubTotal();
+                BigDecimal total = CustomerManagement.getCustomer().getPurchases().get(0).getTotal();
+                BigDecimal tax = CustomerManagement.getCustomer().getPurchases().get(0).getTax();
+                BigDecimal subtotal = CustomerManagement.getCustomer().getPurchases().get(0).getSubTotal();
 
                 cont.showText("SUBTOTAL: $" + df.format(subtotal));
                 cont.appendRawCommands("'\n");
@@ -80,7 +80,7 @@ public class GenerateBill {
 
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(Calendar.getInstance().getTime());
 
-            filename = "src/main/resources/bill" + cm.getCustomer().getName() + timeStamp + ".pdf";
+            filename = "src/main/resources/bill" + CustomerManagement.getCustomer().getName() + timeStamp + ".pdf";
             doc.save(filename);
 
         } catch (IOException e) {

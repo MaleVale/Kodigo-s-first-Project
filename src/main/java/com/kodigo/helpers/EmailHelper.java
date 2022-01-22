@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class EmailHelper {
-    public void sendEmail(CustomerManagement cm, String filename){
+    public void sendEmail(String filename){
         // For sending emails through gmail smtp
         String host = "smtp.gmail.com";
 
@@ -25,7 +25,7 @@ public class EmailHelper {
         properties.put("mail.smtp.auth", "true");
 
         // Recipient's email ID needs to be mentioned.
-        String to = cm.getCustomer().getEmail();
+        String to = CustomerManagement.getCustomer().getEmail();
 
         // Sender's email ID needs to be mentioned
         String from = "citigersystem@gmail.com";
@@ -51,7 +51,7 @@ public class EmailHelper {
             // set Subject: header field
             message.setSubject("Your bill is here!");
             // adds the content from the return of prepareMessage()
-            message.setContent(prepareMessage(filename, cm));
+            message.setContent(prepareMessage(filename));
             System.out.println("sending...");
             Transport.send(message);
             System.out.println("Sent message successfully!");
@@ -60,7 +60,7 @@ public class EmailHelper {
         }
     }
 
-    public Multipart prepareMessage(String filename, CustomerManagement cm){
+    public Multipart prepareMessage(String filename){
         // creates a Multipart object
         Multipart multipart = new MimeMultipart();
 
@@ -74,7 +74,7 @@ public class EmailHelper {
             // attaches the File object to the MimeBodyPart object
             attachmentPart.attachFile(f);
             // adds text to MimeBodyPart object
-            textPart.setText("Hi "+cm.getCustomer().getName()+"! You can find your bill in the attached file");
+            textPart.setText("Hi "+CustomerManagement.getCustomer().getName()+"! You can find your bill in the attached file");
             // adds both MimeBodyPart objects to Multipart main object
             multipart.addBodyPart(textPart);
             multipart.addBodyPart(attachmentPart);
