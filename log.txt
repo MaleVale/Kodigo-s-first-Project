@@ -1,0 +1,51 @@
+Jan 21, 2022 6:28:03 PM Main startShopping
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 21, 2022 6:28:04 PM Main addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 21, 2022 6:28:05 PM Main addToCart
+INFO: The customer added a product to the cart.
+
+Jan 21, 2022 6:28:07 PM Main addToCart
+INFO: The customer added a product to the cart.
+
+Jan 21, 2022 6:28:08 PM Main addToCart
+INFO: The customer added a product to the cart.
+
+Jan 21, 2022 6:28:09 PM Main addToCart
+INFO: The customer added a product to the cart.
+
+Jan 21, 2022 6:28:11 PM Main addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 21, 2022 6:28:39 PM Main enterName
+WARNING: The customer didn't type a valid name. He has 3 attempts to fix it.
+
+Jan 21, 2022 6:28:40 PM Main enterName
+WARNING: The customer didn't type a valid name. Attempts taken: 1
+
+Jan 21, 2022 6:28:40 PM Main enterName
+WARNING: The customer didn't type a valid name. Attempts taken: 2
+
+Jan 21, 2022 6:28:41 PM Main enterName
+WARNING: The customer didn't type a valid name. Attempts taken: 3
+
+Jan 21, 2022 6:28:41 PM Main enterName
+SEVERE: The program got killed because the customer didn't type a valid name.
+
+Jan 22, 2022 11:28:26 AM Main startShopping
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 22, 2022 11:28:27 AM Main addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 22, 2022 11:28:30 AM Main addToCart
+INFO: The customer added a product to the cart.
+
+Jan 22, 2022 11:28:32 AM Main addToCart
+INFO: The customer added a product to the cart.
+
+Jan 22, 2022 11:28:33 AM Main addToCart
+INFO: The customer has returned to the main menu.
+

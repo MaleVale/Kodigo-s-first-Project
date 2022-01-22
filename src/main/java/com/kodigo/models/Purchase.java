@@ -37,7 +37,7 @@ public class Purchase {
 
     private void setTax(ArrayList<Product> products) {
         products.forEach(product -> {
-            this.tax = this.tax.add((BigDecimal.valueOf(product.getStock())).multiply(product.getTax()));
+            this.tax = this.tax.add((BigDecimal.valueOf(product.getStock())).multiply(product.getTax().getTax()));
         });
     }
 

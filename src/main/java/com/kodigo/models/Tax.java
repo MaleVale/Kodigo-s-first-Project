@@ -2,7 +2,7 @@ package com.kodigo.models;
 
 import java.math.BigDecimal;
 
-public abstract class Tax {
+public class Tax {
     protected BigDecimal percentageTax = new BigDecimal("0");
     protected BigDecimal tax = new BigDecimal("0");
 

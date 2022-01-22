@@ -4,13 +4,14 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class Product extends Tax{
+public class Product {
 
     private int id;
     private String brand;
     private String name;
     private BigDecimal price;
     private int stock;
+    private Tax tax;
 
     public Product(int id, String brand, String name, BigDecimal price, int stock){
         this.id = id;
@@ -18,7 +19,8 @@ public class Product extends Tax{
         this.name = name;
         this.price = price;
         this.stock = stock;
-        initializeTax(price);
+        tax = new Tax();
+        tax.initializeTax(price);
     }
 
     public String cartToString(){
