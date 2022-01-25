@@ -6,7 +6,6 @@ import com.kodigo.models.Cart;
 import com.kodigo.models.Product;
 import com.kodigo.models.Purchase;
 import com.kodigo.validations.NumberValidation;
-import lombok.Data;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -34,9 +33,11 @@ public class CartManagement {
         System.out.println("\n1. Type 0 if you want to go back to main menu. " +
                 "Type the ID of the product that you want to add to the cart.");
 
+        int lastId = ProductRepository.returnInventoryLength();
+
         boolean stayOnCart = true;
         while (stayOnCart) {
-            System.out.print("\nType the ID of the product that you want to add: ");
+            System.out.print("\nType the ID of the product that you want to add (1-"+lastId+"): ");
             String idProduct = scan.next();
             if (numberValidation.validateStringParsableToInt(idProduct)) {
                 if (Integer.parseInt(idProduct) == 0) {
@@ -59,8 +60,9 @@ public class CartManagement {
                                     " then come back and add it again with the new stock.");
                             log.getLogger().warning("The customer tried to duplicate a product in the cart.\n");
                         } else {
-                            System.out.println("\nAvailable: " + ProductRepository.getProducts().get(id).getStock());
-                            System.out.print("How much do you want to add of this product?: ");
+                            int available = ProductRepository.getProducts().get(id).getStock();
+                            System.out.println("\nAvailable: " + available);
+                            System.out.print("How much do you want to add of this product? (1-"+available+"): ");
                             String stock = scan.next();
                             if (numberValidation.validateStringParsableToInt(stock)) {
                                 // checks if the typed value doesn't surpass the max available
@@ -114,7 +116,8 @@ public class CartManagement {
                 log.getLogger().warning("The customer tried to delete products from an empty cart.\n");
                 stayOnCart = false;
             } else {
-                System.out.print("\nType the ID of the product that you want to remove: ");
+                int lastId = cart.getCart().size();
+                System.out.print("\nType the ID of the product that you want to remove (1-"+lastId+"): ");
                 String idProduct = scan.next();
                 if (numberValidation.validateStringParsableToInt(idProduct)) {
                     if (Integer.parseInt(idProduct) == 0) {
@@ -173,15 +176,44 @@ public class CartManagement {
             log.getLogger().fine("The purchase was created successfully.\n");
             System.out.println("Purchase added successfully");
 
-            GeneratePdf pdf = new GeneratePdf();
-            String filename = pdf.generateFile();
-
-            EmailHelper eh = new EmailHelper();
-            eh.sendEmail(filename);
+            chooseFileFormat();
         } else {
             log.getLogger().warning("The customer tried to create a purchase with an empty cart.\n");
             System.out.println("There is no products to create a purchase");
         }
+    }
+
+    public static void chooseFileFormat() throws DocumentException, IOException {
+        GeneratePdf pdf = new GeneratePdf();
+        GenerateExcel excel = new GenerateExcel();
+        String filename = null;
+
+        System.out.println("\nCongratulations! You're almost ready, " +
+                "but we need you to select a file format to send your bill to your email.");
+
+        Scanner scan = new Scanner(System.in);
+        boolean stayOnSelection = true;
+
+        while (stayOnSelection){
+            System.out.println("\n1. PDF file.");
+            System.out.println("2. Excel file.\n");
+
+            System.out.print("Please, choose one of the available types (1/2): ");
+            switch (scan.next()) {
+                case "1" -> {
+                    filename = pdf.generateFile();
+                    stayOnSelection = false;
+                }
+                case "2" -> {
+                    filename = excel.generateFile();
+                    stayOnSelection = false;
+                }
+                default -> System.out.println("\nSorry! Looks like you typed an invalid option. Try it again.");
+            }
+        }
+
+        EmailHelper eh = new EmailHelper();
+        eh.sendEmail(filename);
     }
 
 

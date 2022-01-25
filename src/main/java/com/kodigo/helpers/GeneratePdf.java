@@ -118,7 +118,6 @@ public class GeneratePdf implements FileManager {
     private void addPurchaseDetails(Paragraph purchaseDetails, int id, Font fontNormal, Font fontBold){
         DecimalFormat df = new DecimalFormat("#.00");
 
-
         purchaseDetails.add(Chunk.NEWLINE);
 
         purchaseDetails.add(new Phrase("Subtotal: ", fontBold));
