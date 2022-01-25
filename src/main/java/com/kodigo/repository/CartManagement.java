@@ -202,13 +202,18 @@ public class CartManagement {
             switch (scan.next()) {
                 case "1" -> {
                     filename = pdf.generateFile();
+                    log.getLogger().fine("The customer has selected to have a bill in pdf format.\n");
                     stayOnSelection = false;
                 }
                 case "2" -> {
                     filename = excel.generateFile();
+                    log.getLogger().fine("The customer has selected to have a bill in excel format.\n");
                     stayOnSelection = false;
                 }
-                default -> System.out.println("\nSorry! Looks like you typed an invalid option. Try it again.");
+                default -> {
+                    log.getLogger().warning("The customer didn't select a valid option.\n");
+                    System.out.println("\nSorry! Looks like you typed an invalid option. Try it again.");
+                }
             }
         }
 
