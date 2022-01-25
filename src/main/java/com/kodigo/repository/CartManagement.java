@@ -1,9 +1,7 @@
 package com.kodigo.repository;
 
-import com.kodigo.helpers.EmailHelper;
-import com.kodigo.helpers.GenerateBill;
-import com.kodigo.helpers.LogCreator;
-import com.kodigo.helpers.TableHelper;
+import com.itextpdf.text.DocumentException;
+import com.kodigo.helpers.*;
 import com.kodigo.models.Cart;
 import com.kodigo.models.Product;
 import com.kodigo.models.Purchase;
@@ -11,6 +9,7 @@ import com.kodigo.validations.NumberValidation;
 import lombok.Data;
 import lombok.Getter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -101,7 +100,7 @@ public class CartManagement {
         }
     }
 
-    public static void deleteFromCart() {
+    public static void  deleteFromCart() {
         Scanner scan = new Scanner(System.in);
         log.getLogger().info("The customer has started to delete products from the cart.\n");
         TableHelper.checkCart(cart.getCart());
@@ -166,7 +165,7 @@ public class CartManagement {
         return isOnCart;
     }
 
-    public static void endShopping() {
+    public static void endShopping() throws DocumentException, IOException {
         if (!(cart.getCart().isEmpty())) {
             Purchase p = new Purchase(CustomerManagement.getCustomer(), (new Date()), (new ArrayList<>(cart.getCart())));
             CustomerManagement.getCustomer().getPurchases().add(p);
@@ -174,8 +173,8 @@ public class CartManagement {
             log.getLogger().fine("The purchase was created successfully.\n");
             System.out.println("Purchase added successfully");
 
-            GenerateBill gb = new GenerateBill();
-            String filename = gb.generatePdf();
+            GeneratePdf pdf = new GeneratePdf();
+            String filename = pdf.generateFile();
 
             EmailHelper eh = new EmailHelper();
             eh.sendEmail(filename);

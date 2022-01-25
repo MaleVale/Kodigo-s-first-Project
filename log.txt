@@ -184,3 +184,276 @@ INFO: The customer has returned to the main menu.
 Jan 22, 2022 8:47:10 PM com.kodigo.validations.NumberValidation validateStringParsableToInt
 WARNING: The customer didn't type a number.
 
+Jan 24, 2022 7:12:41 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 7:12:42 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 7:12:43 PM com.kodigo.repository.CartManagement addToCart
+WARNING: The customer typed an invalid ID trying to add a product.
+
+Jan 24, 2022 7:16:01 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 7:16:02 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 7:16:04 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 7:16:05 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 7:16:06 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 7:16:07 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 7:17:23 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 7:17:24 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 7:17:25 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 7:17:26 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 7:17:27 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 7:17:28 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 7:22:34 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 7:22:35 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 7:22:37 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 7:22:38 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 7:22:40 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 7:22:41 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 10:09:48 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 10:09:49 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 10:09:50 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:09:51 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:09:51 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 10:11:39 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 10:11:40 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 10:11:41 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:11:42 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:11:43 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 10:22:40 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 10:22:40 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 10:22:41 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:22:43 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:22:43 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 10:31:26 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 10:31:27 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 10:31:28 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:31:30 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:31:31 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 10:36:41 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 10:36:42 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 10:36:43 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:36:44 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:36:45 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:36:46 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 10:38:39 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 10:38:39 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 10:38:40 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:38:42 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:38:43 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 10:51:19 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 10:51:20 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 10:51:21 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:51:22 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:51:24 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:51:24 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 10:55:50 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 10:55:50 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 10:55:52 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:55:53 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:55:56 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 10:55:57 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 11:05:25 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 11:05:26 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 11:05:27 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:05:28 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:05:29 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:05:30 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 11:07:30 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 11:07:31 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 11:07:31 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:07:33 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:07:34 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:07:34 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 11:09:22 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 11:09:28 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:09:31 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:09:32 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 11:13:20 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 11:13:21 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 11:13:22 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:13:23 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:13:25 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:13:26 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+
+Jan 24, 2022 11:14:37 PM Main startMenu
+INFO: The customer has entered his data and joined to the menu successfully.
+
+Jan 24, 2022 11:14:38 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has started to add products to the cart.
+
+Jan 24, 2022 11:14:39 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:14:40 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer added a product to the cart.
+
+Jan 24, 2022 11:14:41 PM com.kodigo.repository.CartManagement addToCart
+INFO: The customer has returned to the main menu.
+

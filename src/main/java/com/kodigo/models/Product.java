@@ -23,6 +23,10 @@ public class Product {
         tax.initializeTax(price);
     }
 
+    public BigDecimal getAmount(){
+        return getPrice().multiply(BigDecimal.valueOf(getStock()));
+    }
+
     public String cartToString(){
         return String.format(". Shoes: %s | Units: %d | Price: $%.2f | Amount: $%.2f",
                 name, stock, price, price.multiply(BigDecimal.valueOf(stock)));

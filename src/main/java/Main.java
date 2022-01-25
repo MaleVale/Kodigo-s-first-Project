@@ -1,20 +1,21 @@
+import com.itextpdf.text.DocumentException;
 import com.kodigo.helpers.LogCreator;
 import com.kodigo.helpers.TableHelper;
 import com.kodigo.repository.CartManagement;
 import com.kodigo.repository.CustomerManagement;
 import com.kodigo.repository.ProductRepository;
-
+import java.io.IOException;
 import java.util.*;
 
 public class  Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DocumentException, IOException {
         System.out.println("--------------------- WELCOME TO THE KODIGO'S STORE ---------------------");
         CustomerManagement.enterCustomerData();
         startMenu();
     }
 
-    public static void startMenu() {
+    public static void startMenu() throws DocumentException, IOException {
         // instances and objects
         LogCreator log = LogCreator.getInstance();
         Scanner scan = new Scanner(System.in);
