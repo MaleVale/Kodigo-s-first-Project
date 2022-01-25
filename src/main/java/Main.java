@@ -1,5 +1,4 @@
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.DocumentException;
 import com.kodigo.helpers.LogCreator;
 import com.kodigo.helpers.TableHelper;
 import com.kodigo.repository.CartManagement;

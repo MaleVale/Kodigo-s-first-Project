@@ -7,6 +7,6 @@ class NumberValidationTest {
     private final NumberValidation validate = new NumberValidation();
     @Test
     void validateStringParsableToInt() {
-        assertEquals(validate.validateStringParsableToInt("01234"), true);
+        assertEquals(true, validate.validateStringParsableToInt("01234"));
     }
 }
